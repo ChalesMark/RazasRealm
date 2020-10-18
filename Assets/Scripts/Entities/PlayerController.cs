@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     int keyCount;                               // How many keys they have
     CharacterController characterController;    // The controller for handling collison and movment
 
+    //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
+    private Vector3 movement;
+
     #region Getters and Setters
     // AddKey
     // Adds key to the keyCount
@@ -44,17 +47,20 @@ public class PlayerController : MonoBehaviour
     // Runs every frame
     void Update()
     {
-        if (!dashing)
-        {
-            MouseLook();
-            WASDMovement();
-        }
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));   
+        MouseLook();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
-        }
-        Dash();        
+        } 
+    }
+
+
+
+    void FixedUpdate() 
+    {
+        characterController.Move(movement * moveSpeed * Time.deltaTime);
     }
 
     // Dash
@@ -92,14 +98,6 @@ public class PlayerController : MonoBehaviour
             characterController.transform.position + characterController.transform.forward, 
             characterController.transform.rotation,
             null);
-    }
-
-    // WASDMovement
-    // Handles player movement
-    void WASDMovement()
-    {
-        Vector3 wasd = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        characterController.Move(wasd * moveSpeed * Time.deltaTime);
     }
 
     // MouseLook
