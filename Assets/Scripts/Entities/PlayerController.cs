@@ -47,9 +47,7 @@ public class PlayerController : MonoBehaviour
     // Runs every frame
     void Update()
     {
-        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));   
         MouseLook();
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
@@ -60,34 +58,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() 
     {
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));   
         characterController.Move(movement * moveSpeed * Time.deltaTime);
-    }
-
-    // Dash
-    // handles dashing logic
-    void Dash()
-    {        
-        // Check if the dash button has been pressed
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !dashing)
-        {
-            dashTimeLeft = DashDuration;
-            dashing = true;            
-        }
-
-        // Runs if dashing
-        if (dashing) {
-            if (dashTimeLeft < 0)
-            {
-                dashTimeLeft = 0;
-                dashing = false;
-            }
-            else
-            {
-                dashTimeLeft -= 1 * Time.deltaTime;
-            }
-            
-            characterController.Move(characterController.transform.forward * DashSpeed * Time.deltaTime);            
-        }
     }
 
     // Shoot

@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     [Header("Please don't change this, unless we have to")]
     public GameObject fade;                             // This is where the big black image thing is put for level transitions
 
-    Transform target;                                   // The target that the camera will be following
+    public Transform target;                                   // The target that the camera will be following
     bool disableSmoothCameraMove = false;               // Used for level transitions. If set to false, will snap to player position
     float fadeOpacity = 0;                              // The opacity of the 'fade' object
     float transitionSpeed = .5f;                        // The speed in which the fade happens
@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
 
     // Update
     // Runs every frame
-    void Update()
+    void FixedUpdate()
     {
         if (target != null)
         {
