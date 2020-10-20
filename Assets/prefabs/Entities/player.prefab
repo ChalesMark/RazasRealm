@@ -49,6 +49,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -73,6 +74,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8714947639866495873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,12 +87,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9963b6f17f134a9b7727ac1342959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 0
   moveSpeed: 10
   DashDuration: 0.5
   DashSpeed: 20
-  bullet: {fileID: 2313466870354791134, guid: dcc4cf5fd1c2dec448b30d63fa4602f3, type: 3}
-  keyCount: 0
+  heldGun: {fileID: 819524637166938528, guid: 85d0c09748f1dac4aac0dad583764841, type: 3}
+  bullet: {fileID: 7866983601712512774, guid: ed9eb907b5502db4d9b327f579271992, type: 3}
+  FireKey: 323
 --- !u!143 &8714947639866495874
 CharacterController:
   m_ObjectHideFlags: 0

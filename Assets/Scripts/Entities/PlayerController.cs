@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Entities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,16 +16,24 @@ public class PlayerController : MonoBehaviour
     public float DashDuration;                  // How long their dash lasts
     public float DashSpeed;                     // How fast the dash is
 
-    public GameObject bullet;                   // The gameobject for what is fired. NOTE: we'll probablly want to change this
+    public GameObject heldGun;                  // The Gun the player is holding
 
     // Internal variables
     float dashTimeLeft;                         // How long the player has left to dash
     bool dashing = false;                       // Flag for if the player is dashing
     int keyCount;                               // How many keys they have
     CharacterController characterController;    // The controller for handling collison and movment
+    
+    // Shooting Variables
+    Gun gunData;
+    float fireIntervals = 0;
 
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
     private Vector3 movement;
+
+    public KeyCode FireKey = KeyCode.Mouse0;
+
+    UnityEngine.Random random;
 
     #region Getters and Setters
     // AddKey
@@ -41,6 +50,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        random = new UnityEngine.Random();
+
+        UpdateGunData();
+    }
+
+    void UpdateGunData()
+    {
+        gunData = heldGun.GetComponent<Gun>();
     }
 
     // Update
@@ -48,7 +65,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MouseLook();
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (gunData.autoFire)
+        {
+            if (fireIntervals > 0)
+                fireIntervals -= Time.deltaTime;
+            if (fireIntervals <= 0)
+                fireIntervals = 0;
+
+            if (Input.GetKey(FireKey))
+            {
+                if (fireIntervals <= 0)
+                    Shoot();
+            }
+        }
+        else
+            if (Input.GetKeyDown(FireKey))
         {
             Shoot();
         } 
@@ -66,9 +97,16 @@ public class PlayerController : MonoBehaviour
     // Handles shooting logic
     void Shoot()
     {
-        Instantiate(bullet,
-            characterController.transform.position + characterController.transform.forward, 
-            characterController.transform.rotation,
+        UpdateGunData();
+        print("pew!");
+        fireIntervals = gunData.firingSpeed;
+
+        float randomSpread = UnityEngine.Random.Range(-gunData.bulletAccuracy, gunData.bulletAccuracy);
+
+        for(int i=0;i<gunData.numberOfBullets;i++)
+        Instantiate(gunData.bullet,
+            characterController.transform.position + characterController.transform.forward,
+            characterController.transform.rotation * Quaternion.Euler(0, randomSpread,0),
             null);
     }
 

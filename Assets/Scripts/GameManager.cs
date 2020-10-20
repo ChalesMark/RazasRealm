@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     GameObject player;                  // The actual player object
 
+    [Header("Toggle for overriding the start game functions. Used so you can create test levels. If set, player will spawn at (0,0,0)")]
+    public bool ignoreGameStart;
+
     #region Getters and Setters
     // GetPlayer
     // retrieves the player controller
@@ -38,7 +41,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(Camera.main);
 
-        LoadScene("Hub");
+        if(!ignoreGameStart)
+            LoadScene("Hub");
+        else
+        {
+            player.transform.position = Vector3.zero;
+        }
     }
 
     // LoadScene
