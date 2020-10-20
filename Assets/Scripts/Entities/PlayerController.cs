@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     // Runs every frame
     void Update()
     {
+        WASD();
         MouseLook();
         if (gunData.autoFire)
         {
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void FixedUpdate() 
+    void WASD() 
     {
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));   
         characterController.Move(movement * moveSpeed * Time.deltaTime);

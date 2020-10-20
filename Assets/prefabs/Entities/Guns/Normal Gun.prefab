@@ -111,7 +111,7 @@ MonoBehaviour:
   bulletSpeed: 20
   numberOfBullets: 1
   bulletSpread: 0
-  firingSpeed: 0
+  firingSpeed: 1
   autoFire: 0
   bulletLifeSpan: 5
   randomBulletLifeSpan: 0
