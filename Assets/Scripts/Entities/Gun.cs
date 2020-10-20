@@ -11,16 +11,17 @@ namespace Assets.Scripts.Entities
     {
         public float bulletSpeed;
         public float numberOfBullets;
-        public float bulletAccuracy;
+        public float bulletSpread;
         public float firingSpeed;
         public bool autoFire;
         public float bulletLifeSpan;
+        public float randomBulletLifeSpan;
         public GameObject bullet;
         public int baseDamage;
 
         private void Start()
         {
-            bullet.GetComponent<Bullet>().AcceptVariables(bulletLifeSpan, bulletSpeed, baseDamage);
+            bullet.GetComponent<Bullet>().AcceptVariables(bulletLifeSpan,randomBulletLifeSpan, bulletSpeed, baseDamage);
         }
 
         void OnTriggerEnter(Collider other)

@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         print("pew!");
         fireIntervals = gunData.firingSpeed;
 
-        float randomSpread = UnityEngine.Random.Range(-gunData.bulletAccuracy, gunData.bulletAccuracy);
+        float randomSpread = UnityEngine.Random.Range(-gunData.bulletSpread, gunData.bulletSpread);
 
         for(int i=0;i<gunData.numberOfBullets;i++)
         Instantiate(gunData.bullet,

@@ -12,11 +12,11 @@ namespace Assets.Scripts.Entities
         public float bulletLifeSpan;
         public float bulletSpeed;
         public int baseDamage;
-        public void AcceptVariables(float bulletLifeSpan, float bulletSpeed, int baseDamage)
+        public void AcceptVariables(float bulletLifeSpan,float randomBulletLifeSpan, float bulletSpeed, int baseDamage)
         {
-            this.bulletLifeSpan = bulletLifeSpan;
+            this.bulletLifeSpan = bulletLifeSpan + UnityEngine.Random.Range(0, randomBulletLifeSpan);
             this.bulletSpeed = bulletSpeed;
-            this.baseDamage = baseDamage;
+            this.baseDamage = baseDamage;            
         }
 
         // Update

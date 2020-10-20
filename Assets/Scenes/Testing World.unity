@@ -536,6 +536,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlameThrower
       objectReference: {fileID: 0}
+    - target: {fileID: 4299104710931110674, guid: 2450f99fbeb3b634ca24e437b3330581,
+        type: 3}
+      propertyPath: randomBulletLifeSpan
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299104710931110674, guid: 2450f99fbeb3b634ca24e437b3330581,
+        type: 3}
+      propertyPath: bulletSpread
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299104710931110674, guid: 2450f99fbeb3b634ca24e437b3330581,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299104710931110674, guid: 2450f99fbeb3b634ca24e437b3330581,
+        type: 3}
+      propertyPath: bulletLifeSpan
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6784611566058078326, guid: 2450f99fbeb3b634ca24e437b3330581,
         type: 3}
       propertyPath: m_LocalPosition.x

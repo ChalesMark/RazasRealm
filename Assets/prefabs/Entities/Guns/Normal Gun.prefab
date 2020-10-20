@@ -108,11 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34edd7427538f645b2aa34f15f9e15d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 10
+  bulletSpeed: 20
   numberOfBullets: 1
-  bulletAccuracy: 5
+  bulletSpread: 0
   firingSpeed: 0
   autoFire: 0
   bulletLifeSpan: 5
+  randomBulletLifeSpan: 0
   bullet: {fileID: 7866983601712512774, guid: ed9eb907b5502db4d9b327f579271992, type: 3}
   baseDamage: 0

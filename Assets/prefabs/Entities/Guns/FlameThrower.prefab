@@ -110,9 +110,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 5
   numberOfBullets: 10
-  bulletAccuracy: 100
+  bulletSpread: 10
   firingSpeed: 0
   autoFire: 1
   bulletLifeSpan: 1
+  randomBulletLifeSpan: 1
   bullet: {fileID: 705399059138421860, guid: 23fa0955bb293d04ab519533e923da33, type: 3}
   baseDamage: 0
