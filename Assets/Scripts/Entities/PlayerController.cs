@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     bool dashing = false;                       // Flag for if the player is dashing
     int keyCount;                               // How many keys they have
     CharacterController characterController;    // The controller for handling collison and movment
+    Animator animator;
     
     // Shooting Variables
     Gun gunData;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         random = new UnityEngine.Random();
 
         UpdateGunData();
@@ -90,7 +92,10 @@ public class PlayerController : MonoBehaviour
 
     void WASD() 
     {
-        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));   
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        animator.SetBool("Moving", movement == Vector3.zero ? false : true);
+
         characterController.Move(movement * moveSpeed * Time.deltaTime);
     }
 
@@ -99,6 +104,7 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {
         UpdateGunData();
+        animator.SetTrigger("Shoot");
         print("pew!");
         fireIntervals = gunData.firingSpeed;
 
