@@ -265,7 +265,9 @@ MonoBehaviour:
   moveSpeed: 10
   DashDuration: 0.5
   DashSpeed: 20
-  heldGun: {fileID: 819524637166938528, guid: 85d0c09748f1dac4aac0dad583764841, type: 3}
+  startingGun: {fileID: 4520463788982008768, guid: 5b2ce4a25aff0da43941042edae63b02,
+    type: 3}
+  gunBone: {fileID: 0}
   FireKey: 323
 --- !u!143 &544838853922908089
 CharacterController:

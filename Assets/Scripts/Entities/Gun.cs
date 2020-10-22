@@ -28,7 +28,7 @@ namespace Assets.Scripts.Entities
         {
             if (other.tag == "Player")
             {
-                other.GetComponent<PlayerController>().heldGun = this.gameObject;
+                other.GetComponent<PlayerController>().PickupGun(this.gameObject);
             }
         }
     }

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float DashDuration;                  // How long their dash lasts
     public float DashSpeed;                     // How fast the dash is
 
-    public GameObject heldGun;                  // The Gun the player is holding
+    public GameObject startingGun;              // The Gun the player is holding at the start
 
     // Internal variables
     float dashTimeLeft;                         // How long the player has left to dash
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     
     // Shooting Variables
     Gun gunData;
+    public GameObject heldGun;
+    public Transform gunBone;
     float fireIntervals = 0;
 
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
@@ -50,16 +52,26 @@ public class PlayerController : MonoBehaviour
     // Runs once the object is loaded in
     void Start()
     {
+        PickupGun(startingGun);
+        UpdateGunData();
+
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        random = new UnityEngine.Random();
-
-        UpdateGunData();
+        random = new UnityEngine.Random();       
     }
 
     void UpdateGunData()
     {
+        print("FD");
         gunData = heldGun.GetComponent<Gun>();
+    }
+
+    public void PickupGun (GameObject gun)
+    {
+        //Destroy(heldGun.gameObject);
+        //heldGun = Instantiate(gun);
+        heldGun = gun;
+        UpdateGunData();
     }
 
     // Update
@@ -88,7 +100,16 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
-
+    /*
+    private void FixedUpdate()
+    {
+        if (heldGun != null)
+        {
+            heldGun.transform.position = gunBone.transform.position;
+            heldGun.transform.rotation = gunBone.transform.rotation;
+        }
+    }
+    */
 
     void WASD() 
     {
@@ -103,9 +124,7 @@ public class PlayerController : MonoBehaviour
     // Handles shooting logic
     void Shoot()
     {
-        UpdateGunData();
         animator.SetTrigger("Shoot");
-        print("pew!");
         fireIntervals = gunData.firingSpeed;
 
         float randomSpread = UnityEngine.Random.Range(-gunData.bulletSpread, gunData.bulletSpread);
