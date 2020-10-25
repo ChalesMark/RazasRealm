@@ -36,6 +36,7 @@ public class CameraController : MonoBehaviour
     {
         if (target != null)
         {
+            /*
             if (!disableSmoothCameraMove)
             {
                 this.transform.rotation = Quaternion.Euler(50, 0, 0);
@@ -47,9 +48,10 @@ public class CameraController : MonoBehaviour
             }
             else
             {
+            */
                 this.transform.rotation = Quaternion.Euler(50, 0, 0);
                 this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);
-            }
+            //}
         }
     }
 

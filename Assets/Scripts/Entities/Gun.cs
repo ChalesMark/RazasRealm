@@ -17,7 +17,10 @@ namespace Assets.Scripts.Entities
         public float bulletLifeSpan;
         public float randomBulletLifeSpan;
         public GameObject bullet;
+        public ShootType AnimationType;
         public int baseDamage;
+
+        public enum ShootType { Normal, MachineGun, Big, Steady};
 
         private void Start()
         {

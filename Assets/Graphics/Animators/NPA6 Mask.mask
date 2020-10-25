@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NPA6 Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: HP_Sphere.002
+    m_Weight: 0
+  - m_Path: player_armature
+    m_Weight: 0
+  - m_Path: player_armature/gun
+    m_Weight: 1
+  - m_Path: player_armature/gun/gun_end
+    m_Weight: 1
+  - m_Path: player_armature/l_foot
+    m_Weight: 0
+  - m_Path: player_armature/l_foot/l_foot_end
+    m_Weight: 0
+  - m_Path: player_armature/l_hand
+    m_Weight: 1
+  - m_Path: player_armature/l_hand/l_hand_end
+    m_Weight: 1
+  - m_Path: player_armature/r_foot
+    m_Weight: 0
+  - m_Path: player_armature/r_foot/r_foot_end
+    m_Weight: 0
+  - m_Path: player_armature/r_hand
+    m_Weight: 1
+  - m_Path: player_armature/r_hand/r_hand_end
+    m_Weight: 1
+  - m_Path: player_armature/root
+    m_Weight: 0
+  - m_Path: player_armature/root/body1
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2/head
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2/head/head_end
+    m_Weight: 0
+  - m_Path: player_armature/root/body1/body2/l_arm1
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2/l_arm1/l_arm2
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2/l_arm1/l_arm2/l_arm2_end
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2/r_arm1
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2/r_arm1/r_arm2
+    m_Weight: 1
+  - m_Path: player_armature/root/body1/body2/r_arm1/r_arm2/r_arm2_end
+    m_Weight: 1
+  - m_Path: player_armature/root/hip
+    m_Weight: 0
+  - m_Path: player_armature/root/hip/l_leg1
+    m_Weight: 0
+  - m_Path: player_armature/root/hip/l_leg1/l_leg2
+    m_Weight: 0
+  - m_Path: player_armature/root/hip/l_leg1/l_leg2/l_leg2_end
+    m_Weight: 0
+  - m_Path: player_armature/root/hip/r_leg1
+    m_Weight: 0
+  - m_Path: player_armature/root/hip/r_leg1/r_leg2
+    m_Weight: 0
+  - m_Path: player_armature/root/hip/r_leg1/r_leg2/r_leg2_end
+    m_Weight: 0

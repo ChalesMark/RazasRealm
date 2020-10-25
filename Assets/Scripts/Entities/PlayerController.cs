@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
     public Transform gunBone;
     float fireIntervals = 0;
 
+    // Cosmetic Stuff
+    public GameObject startingHat;
+    GameObject hat;
+    public Transform hatBone;
+
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
     private Vector3 movement;
 
@@ -52,35 +57,58 @@ public class PlayerController : MonoBehaviour
     // Runs once the object is loaded in
     void Start()
     {
-        PickupGun(startingGun);
-        UpdateGunData();
-
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        random = new UnityEngine.Random();       
+        random = new UnityEngine.Random();
+
+        PickupGun(startingGun);
+        PickupHat(startingHat);
     }
 
     void UpdateGunData()
     {
-        print("FD");
         gunData = heldGun.GetComponent<Gun>();
+        switch (gunData.AnimationType)
+        {
+            case Gun.ShootType.Normal:
+                animator.SetInteger("shootType", 0);
+                break;
+            case Gun.ShootType.MachineGun:
+                animator.SetInteger("shootType", 1);
+                break;
+            case Gun.ShootType.Steady:
+                animator.SetInteger("shootType", 2);
+                break;
+            case Gun.ShootType.Big:
+                animator.SetInteger("shootType", 3);
+                break;
+        }
+        
+        
     }
 
     public void PickupGun (GameObject gun)
     {
-        //Destroy(heldGun.gameObject);
-        //heldGun = Instantiate(gun);
-        heldGun = gun;
+        print("Picked up Gun");
+        if (heldGun != null)
+            Destroy(heldGun.gameObject);
+
+        heldGun = Instantiate(gun);
+        heldGun.GetComponent<BoxCollider>().enabled = false;
         UpdateGunData();
+    }
+    public void PickupHat(GameObject hat)
+    {
+        if (this.hat != null)
+            Destroy(this.hat.gameObject);
+        this.hat = Instantiate(hat);
     }
 
     // Update
     // Runs every frame
     void Update()
-    {
-        WASD();
-        MouseLook();
-        if (gunData.autoFire)
+    {        
+        if (gunData != null && gunData.autoFire)
         {
             if (fireIntervals > 0)
                 fireIntervals -= Time.deltaTime;
@@ -100,23 +128,29 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
-    /*
+    
     private void FixedUpdate()
     {
+        if (animator != null)
+            WASD();
+        MouseLook();
         if (heldGun != null)
         {
-            heldGun.transform.position = gunBone.transform.position;
-            heldGun.transform.rotation = gunBone.transform.rotation;
+            heldGun.transform.position = gunBone.position;
+            heldGun.transform.rotation = gunBone.rotation;
+        }
+        if (hat != null)
+        {
+            hat.transform.position = hatBone.position;
+            hat.transform.rotation = hatBone.rotation;
         }
     }
-    */
+    
 
     void WASD() 
     {
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        animator.SetBool("Moving", movement == Vector3.zero ? false : true);
-
+        animator.SetBool("moving", movement == Vector3.zero ? false : true);
         characterController.Move(movement * moveSpeed * Time.deltaTime);
     }
 
@@ -124,16 +158,19 @@ public class PlayerController : MonoBehaviour
     // Handles shooting logic
     void Shoot()
     {
-        animator.SetTrigger("Shoot");
+        animator.SetTrigger("shoot");
         fireIntervals = gunData.firingSpeed;
 
-        float randomSpread = UnityEngine.Random.Range(-gunData.bulletSpread, gunData.bulletSpread);
+        float randomSpread;
 
-        for(int i=0;i<gunData.numberOfBullets;i++)
-        Instantiate(gunData.bullet,
-            characterController.transform.position + characterController.transform.forward,
-            characterController.transform.rotation * Quaternion.Euler(0, randomSpread,0),
-            null);
+        for (int i = 0; i < gunData.numberOfBullets; i++)
+        {
+            randomSpread = UnityEngine.Random.Range(-gunData.bulletSpread, gunData.bulletSpread);
+            Instantiate(gunData.bullet,
+                heldGun.transform.position + characterController.transform.forward,
+                characterController.transform.rotation * Quaternion.Euler(0, randomSpread, 0),
+                null);
+        }
     }
 
     // MouseLook
