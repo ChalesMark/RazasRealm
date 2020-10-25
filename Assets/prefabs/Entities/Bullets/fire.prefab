@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180641069080739550}
   - component: {fileID: 2024225754173785690}
+  - component: {fileID: 7144880201484881282}
   m_Layer: 0
   m_Name: fire
   m_TagString: Untagged
@@ -44,6 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e34e92175368c4fb2b2ef930e110c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletLifeSpan: 1
+  bulletSpeed: 10
+  baseDamage: 25
+  damageNumbers: {fileID: 5544688075521996792, guid: 438fa593b1689fd41bbc66d41d3fc6f3,
+    type: 3}
+--- !u!136 &7144880201484881282
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705399059138421860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8378911186589342909
 GameObject:
   m_ObjectHideFlags: 0
