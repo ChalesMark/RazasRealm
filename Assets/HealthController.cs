@@ -11,7 +11,8 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
-      currHealth = maxHealth;  
+        currHealth = maxHealth;
+
     }
 
 
@@ -36,4 +37,6 @@ public class HealthController : MonoBehaviour
     public void Kill() {
         Destroy(gameObject);
     }
+
+    
 }

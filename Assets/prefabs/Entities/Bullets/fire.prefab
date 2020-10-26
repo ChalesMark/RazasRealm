@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e34e92175368c4fb2b2ef930e110c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletLifeSpan: 1
   bulletSpeed: 10
   baseDamage: 25
 --- !u!136 &7144880201484881282
@@ -90,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764d62d866284ba498bf081a1c001f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToWait: 1
+  timeToWait: 0.25
 --- !u!1 &8378911186589342909
 GameObject:
   m_ObjectHideFlags: 0
