@@ -53,7 +53,8 @@ MonoBehaviour:
   bulletLifeSpan: 1
   randomBulletLifeSpan: 0
   bullet: {fileID: 1309111246164075521, guid: 6738d269e05fd1b44afd89abc574b3c2, type: 3}
-  baseDamage: 0
+  AnimationType: 0
+  baseDamage: 25
 --- !u!65 &394815460
 BoxCollider:
   m_ObjectHideFlags: 0

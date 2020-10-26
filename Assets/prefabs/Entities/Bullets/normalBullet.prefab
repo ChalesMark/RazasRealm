@@ -90,10 +90,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7378852542997194172}
-  - component: {fileID: 1907034870985371340}
   - component: {fileID: -7501894434457420305}
   - component: {fileID: 8017244745876563701}
-  - component: {fileID: -1195892745705935628}
+  - component: {fileID: 6249082928986291476}
+  - component: {fileID: 1830079840154029331}
+  - component: {fileID: 91367970481279054}
   m_Layer: 0
   m_Name: normalBullet
   m_TagString: Untagged
@@ -116,20 +117,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1907034870985371340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7866983601712512774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e34e92175368c4fb2b2ef930e110c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 30
-  baseDamage: 25
 --- !u!136 &-7501894434457420305
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -158,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageNumbers: {fileID: 5544688075521996792, guid: 438fa593b1689fd41bbc66d41d3fc6f3,
     type: 3}
---- !u!114 &-1195892745705935628
+--- !u!114 &6249082928986291476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +154,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 7866983601712512774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764d62d866284ba498bf081a1c001f91, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b674d69c13f5654f888bbe09e5a1d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToWait: 1
+  Speed: 30
+--- !u!114 &1830079840154029331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866983601712512774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71103c900ebbcc74c92c9ed2dd9506fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseDamage: 25
+  minBonusDmg: 0
+  maxBonusDmg: 5
+--- !u!114 &91367970481279054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866983601712512774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f008b689cce464385b6836fc80e878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lifespan: 1

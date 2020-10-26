@@ -15,7 +15,6 @@ namespace Assets.Scripts.Entities
         public float firingSpeed;
         public bool autoFire;
         public float bulletLifeSpan;
-        public float randomBulletLifeSpan;
         public GameObject bullet;
         public ShootType AnimationType;
         public int baseDamage;
@@ -24,7 +23,9 @@ namespace Assets.Scripts.Entities
 
         private void Start()
         {
-            bullet.GetComponent<Bullet>().AcceptVariables(bulletLifeSpan,randomBulletLifeSpan, bulletSpeed, baseDamage);
+            bullet.GetComponent<BulletSpeedController>().Speed = bulletSpeed;
+            bullet.GetComponent<DamageController>().BaseDamage = baseDamage;
+            bullet.GetComponent<LifeSpanController>().Lifespan = bulletLifeSpan;
         }
 
         void OnTriggerEnter(Collider other)
