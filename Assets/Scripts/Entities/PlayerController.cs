@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
         heldGun = Instantiate(gun);
         heldGun.GetComponent<BoxCollider>().enabled = false;
+        heldGun.GetComponent<Gun>().AssignOwner(this.playerName);
         UpdateGunData();
     }
     public void PickupHat(GameObject hat)

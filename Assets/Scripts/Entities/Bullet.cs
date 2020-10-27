@@ -12,6 +12,7 @@ namespace Assets.Scripts.Entities
     {
         public float bulletSpeed;
         public int baseDamage;
+        public string owner;
 
         public void AcceptVariables(float bulletLifeSpan,float randomBulletLifeSpan, float bulletSpeed, int baseDamage)
         {

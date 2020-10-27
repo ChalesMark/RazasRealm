@@ -27,6 +27,11 @@ namespace Assets.Scripts.Entities
             bullet.GetComponent<Bullet>().AcceptVariables(bulletLifeSpan,randomBulletLifeSpan, bulletSpeed, baseDamage);
         }
 
+        public void AssignOwner(string player)
+        {
+            bullet.GetComponent<Bullet>().owner = player;
+        }
+
         void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
