@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOnTime : MonoBehaviour
+public class LifeSpanController : MonoBehaviour
 {
-    public float timeToWait;
+    public float Lifespan;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +14,11 @@ public class DestroyOnTime : MonoBehaviour
 
     IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(timeToWait);
+        yield return new WaitForSeconds(Lifespan);
         Destroy(gameObject);
+    }
+
+    public void SetLifespan(float Lifespan) {
+        this.Lifespan = Lifespan;
     }
 }
