@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     {
         return player.GetComponent<PlayerController>();
     }
+
+    public GameObject GetPlayerObject()
+    {
+        return player;
+    }
     #endregion
 
     // Start

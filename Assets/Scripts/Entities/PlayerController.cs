@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     int keyCount;                               // How many keys they have
     CharacterController characterController;    // The controller for handling collison and movment
     Animator animator;
+    GameObject ground;
     
     // Shooting Variables
     Gun gunData;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        ground = GameObject.Find("Plane");
         random = new UnityEngine.Random();
 
         PickupGun(startingGun);
@@ -83,7 +85,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetInteger("shootType", 3);
                 break;
         }
-        
         
     }
 
@@ -121,11 +122,10 @@ public class PlayerController : MonoBehaviour
                     Shoot();
             }
         }
-        else
-            if (Input.GetKeyDown(FireKey))
+        else if (Input.GetKeyDown(FireKey))
         {
             Shoot();
-        } 
+        }
     }
 
     

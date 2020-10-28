@@ -8,11 +8,11 @@ public class HealthController : MonoBehaviour
     // Start is called before the first frame update
     public int maxHealth = 100;
     public int currHealth;
+    bool dead = false;
 
     private void Start()
     {
         currHealth = maxHealth;
-
     }
 
 
@@ -35,6 +35,10 @@ public class HealthController : MonoBehaviour
 
 
     public void Kill() {
+        if (!dead)
+            MoneyController.amount += 1;
+
+        dead = true;
         Destroy(gameObject);
     }
 

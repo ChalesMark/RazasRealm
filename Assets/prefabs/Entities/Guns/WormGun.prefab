@@ -51,9 +51,10 @@ MonoBehaviour:
   firingSpeed: 0.2
   autoFire: 1
   bulletLifeSpan: 1
-  randomBulletLifeSpan: 0
   bullet: {fileID: 7866983601712512774, guid: ed9eb907b5502db4d9b327f579271992, type: 3}
+  AnimationType: 0
   baseDamage: 0
+  type: 2
 --- !u!65 &867452711
 BoxCollider:
   m_ObjectHideFlags: 0
