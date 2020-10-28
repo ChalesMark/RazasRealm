@@ -47,6 +47,11 @@ namespace Assets.Scripts.Entities
             }
         }
 
+        public void AssignOwner(string player)
+        {
+            bullet.GetComponent<Bullet>().owner = player;
+        }
+
         void OnTriggerEnter(Collider other)
         {
             GameObject.Find("BuyText").GetComponent<Text>().color = new Color(0, 0, 0, 255);
