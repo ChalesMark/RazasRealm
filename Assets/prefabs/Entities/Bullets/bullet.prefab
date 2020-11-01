@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f008b689cce464385b6836fc80e878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lifespan: 1
 --- !u!114 &7505028405509064718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b674d69c13f5654f888bbe09e5a1d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 20
 --- !u!114 &4467315254159118571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71103c900ebbcc74c92c9ed2dd9506fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BaseDamage: 25
   minBonusDmg: 0
   maxBonusDmg: 15
 --- !u!1 &8045450241773100248

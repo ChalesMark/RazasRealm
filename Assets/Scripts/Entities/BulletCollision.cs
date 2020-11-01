@@ -18,7 +18,8 @@ public class BulletCollision : MonoBehaviour
         if (other.tag == "Enemy")
         {   
             damageNumbers.text = damageController.Damage(other.GetComponent<HealthController>()).ToString();
-            Instantiate(damageNumbers, transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Quaternion.LookRotation(Camera.main.transform.position - transform.position)); 
+            Instantiate(damageNumbers, transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Quaternion.LookRotation(Camera.main.transform.position - transform.position));
+            other.GetComponent<BaddieController>().Bleed();
             Destroy(gameObject);
         }
     }

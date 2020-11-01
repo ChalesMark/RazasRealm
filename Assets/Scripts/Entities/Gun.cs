@@ -54,7 +54,8 @@ namespace Assets.Scripts.Entities
 
         void OnTriggerEnter(Collider other)
         {
-            GameObject.Find("BuyText").GetComponent<Text>().color = new Color(0, 0, 0, 255);
+            if(other.tag == "Player")
+                GameObject.Find("BuyText").GetComponent<Text>().color = new Color(0, 0, 0, 255);
         }
         void OnTriggerStay(Collider other)
         {
@@ -66,7 +67,8 @@ namespace Assets.Scripts.Entities
         }
         void OnTriggerExit(Collider other)
         {
-            GameObject.Find("BuyText").GetComponent<Text>().color = new Color(0, 0, 0, 0);
+            if(other.tag == "Player")
+                GameObject.Find("BuyText").GetComponent<Text>().color = new Color(0, 0, 0, 0);
         }
     }
 }
