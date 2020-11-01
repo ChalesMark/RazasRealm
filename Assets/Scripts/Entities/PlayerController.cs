@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     bool dashing = false;                       // Flag for if the player is dashing
     int keyCount;                               // How many keys they have
     CharacterController characterController;    // The controller for handling collison and movment
+    CameraController camera;
     Animator animator;
     GameObject ground;
     
@@ -41,6 +42,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
 
     public KeyCode FireKey = KeyCode.Mouse0;
+    public KeyCode actionKey = KeyCode.F;
+
+    GameObject currentlyLookingAt;
 
     UnityEngine.Random random;
 
@@ -59,6 +63,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        camera = Camera.main.GetComponent<CameraController>();
         animator = GetComponent<Animator>();
         ground = GameObject.Find("Plane");
         random = new UnityEngine.Random();
@@ -109,7 +114,9 @@ public class PlayerController : MonoBehaviour
     // Update
     // Runs every frame
     void Update()
-    {        
+    {
+        Interactable();
+
         if (gunData != null && gunData.autoFire)
         {
             if (fireIntervals > 0)
@@ -129,7 +136,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    private void Interactable()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(
+            new Vector3(this.transform.position.x, 0.5f, this.transform.position.z),
+            this.transform.forward,
+            out hit,
+            3f
+            ))
+        {
+            currentlyLookingAt = hit.transform.gameObject;
+        }
+        else
+        {
+            currentlyLookingAt = null;
+        }
+
+        if (Input.GetKey(actionKey) && currentlyLookingAt != null)
+        {
+            if (currentlyLookingAt.GetComponent<Talkable>() != null)
+            {
+                Talkable t = currentlyLookingAt.GetComponent<Talkable>();
+                camera.ShowMessage(t.text,t.speaker, t.readTime,t.showChatBox);
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         if (animator != null)
