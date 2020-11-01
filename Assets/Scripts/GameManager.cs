@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -37,19 +38,18 @@ public class GameManager : MonoBehaviour
     // Runs once the gameobject is loaded in
     void Start()
     {
-        Camera.main.cullingMask = 1 << 0;
-        player = Instantiate(playerPrefab);
-        Camera.main.GetComponent<CameraController>().SetTarget(player);
+        Camera.main.cullingMask = 1 << 0;        
 
         // Sets gameobjects to DontDestroyOnLoad so they continue to exist between level changes
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(player);
         DontDestroyOnLoad(Camera.main);
 
         if(!ignoreGameStart)
-            LoadScene("Hub");
+            LoadScene("Hub","main");
         else
         {
+            player = Instantiate(playerPrefab);
+            Camera.main.GetComponent<CameraController>().SetTarget(player);
             player.transform.position = Vector3.zero;
         }
     }
@@ -57,14 +57,56 @@ public class GameManager : MonoBehaviour
     // LoadScene
     // loads the scene. NOTE: the scene must be added to the build list to be loadable
     // Parama:  string scene:       The name of the scene.
-    public void LoadScene(string scene)
+    public void LoadScene(string scene,string spawnPointName)
     {
-        StartCoroutine(LoadAsyncScene(scene));
+        CameraController camera = Camera.main.GetComponent<CameraController>();
+        camera.SetFade(0);
+
+        StartCoroutine(camera.FadeToBlack(scene, spawnPointName,this));
+             
+    }
+
+    public void LoadScene2(string scene, string spawnPointName)
+    {
+        SceneManager.LoadScene(scene);
+
+        if (SceneManager.GetActiveScene().name != scene)
+        {
+
+            StartCoroutine(WaitForSceneLoad(scene, spawnPointName));
+        }
+    }
+
+    IEnumerator WaitForSceneLoad(string scene, string spawnPointName)
+    {
+        while (SceneManager.GetActiveScene().name != scene)
+        {
+            yield return null;
+        }
+
+        if (SceneManager.GetActiveScene().name == scene)
+        {
+            FindPoint(spawnPointName);
+        }
+    }
+
+    private void FindPoint(string spawnPointName)
+    {
+        CameraController camera = Camera.main.GetComponent<CameraController>();
+        GameObject lmGM = GameObject.Find("LevelManager");
+        LevelManager lm = lmGM.GetComponent<LevelManager>();
+
+        Vector3 mainSP = lm.GetSpawnPoint(spawnPointName).GetLocation();
+        
+        player = Instantiate(playerPrefab, mainSP, Quaternion.identity, null);
+        camera.SetTarget(player);
+        
+        StartCoroutine(camera.FadeToScreen());
     }
 
     IEnumerator LoadAsyncScene(string scene)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene,LoadSceneMode.Single);
 
         while (!asyncLoad.isDone)
         {      

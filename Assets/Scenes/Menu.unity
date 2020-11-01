@@ -348,6 +348,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4769360354525501321, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: transitionSpeed
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769360354525501321, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: fadeSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769360355199866029, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769360355199866029, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769360355199866029, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769360355199866029, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769360355199866029, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769360355199866029, guid: 84cf7b948761cf242b05b837caf1a1e6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 496
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84cf7b948761cf242b05b837caf1a1e6, type: 3}
 --- !u!1001 &5547052507953887767
@@ -412,6 +452,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 9045097437185919970, guid: c00a5deaad350cf4fb6ebd569be94ab4,
+        type: 3}
     - target: {fileID: 5547052508097913827, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
       propertyPath: m_Name

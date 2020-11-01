@@ -17,8 +17,8 @@ public class CameraController : MonoBehaviour
 
     public Transform target;                                   // The target that the camera will be following
     bool disableSmoothCameraMove = false;               // Used for level transitions. If set to false, will snap to player position
-    float fadeOpacity = 0;                              // The opacity of the 'fade' object
-    float transitionSpeed = .5f;                        // The speed in which the fade happens
+    public float fadeOpacity = 0;                              // The opacity of the 'fade' object
+    public float fadeSpeed = 0.5f;
 
     #region Getters and Setters
     // SetSmoothCameraMovement
@@ -49,8 +49,8 @@ public class CameraController : MonoBehaviour
             else
             {
             */
-                this.transform.rotation = Quaternion.Euler(50, 0, 0);
-                this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);
+            this.transform.rotation = Quaternion.Euler(50, 0, 0);
+            this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);
             //}
         }
     }
@@ -66,21 +66,17 @@ public class CameraController : MonoBehaviour
     // FadeToBlack
     // Fades the camera to black. Also disables player control. Use with the FadeToScreen function
     // Return:  IEnumerator
-    public IEnumerator FadeToBlack()
+    public IEnumerator FadeToBlack(string scene, string spawnPointName,GameManager gm)
     {
-        
-        fadeOpacity = 0;
-        fade.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-
-        while (fadeOpacity < 1)
-        {
-            fadeOpacity += transitionSpeed * Time.deltaTime;
-            fade.GetComponent<Image>().color = new Color(0, 0, 0, fadeOpacity);
+        SetFade(0);
+        do
+        {            
             yield return null;
-        }
-        
-        fade.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-        this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);     
+            fadeOpacity += fadeSpeed * Time.deltaTime;
+            fade.GetComponent<Image>().color = new Color(0, 0, 0, fadeOpacity);            
+        } while (fadeOpacity < 1);
+        SetFade(1);
+        gm.LoadScene2(scene, spawnPointName);
     }
 
     // FadeToScreen
@@ -88,15 +84,20 @@ public class CameraController : MonoBehaviour
     // Return:  IEnumerator
     public IEnumerator FadeToScreen()
     {
-        fadeOpacity = 1;
-        fade.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-        while (fadeOpacity > 0)
+        SetFade(1);
+        do
         {
-            fadeOpacity -= transitionSpeed * Time.deltaTime;
-            fade.GetComponent<Image>().color = new Color(0, 0, 0, fadeOpacity);
             yield return null;
-        }
+            fadeOpacity -= fadeSpeed * Time.deltaTime;
+            fade.GetComponent<Image>().color = new Color(0, 0, 0, fadeOpacity);
+        } while (fadeOpacity > 0);
 
-        fade.GetComponent<Image>().color = new Color(0, 0, 0, 0);        
+        SetFade(0);
+    }
+
+    public void SetFade(float fade)
+    {
+        fadeOpacity = fade;
+        this.fade.GetComponent<Image>().color = new Color(0, 0, 0, fade);
     }
 }
