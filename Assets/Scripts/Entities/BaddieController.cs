@@ -26,8 +26,12 @@ public class BaddieController : MonoBehaviour
     [Range(0.0f, 10.0f)]
     public int Speed = 1;
 
+    Animator animator;
+
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        animator.SetBool("Moving",true);
         playerSpotted = false;
         GetRandomTarget();
     }
@@ -43,9 +47,15 @@ public class BaddieController : MonoBehaviour
         ScanForPlayer();
 
         if (playerSpotted)
+        {
+            animator.SetFloat("AgroBlend", 0f);
             FollowPlayer();
+        }
         else
+        {
+            animator.SetFloat("AgroBlend", 1f);
             Roam();
+        }
 
         MoveForward();
     }

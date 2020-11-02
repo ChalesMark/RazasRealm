@@ -8,11 +8,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
-    class Bullet : MonoBehaviour
+    class AttachedParticleEffect : MonoBehaviour
     {
-        public float bulletSpeed;
-        public int baseDamage;
-        public string owner;
         public ParticleSystem ps;
         ParticleSystem internalPS;
 
@@ -22,11 +19,6 @@ namespace Assets.Scripts.Entities
                 internalPS = Instantiate(ps);
         }
 
-        public void AcceptVariables(float bulletLifeSpan,float randomBulletLifeSpan, float bulletSpeed, int baseDamage)
-        {
-            this.bulletSpeed = bulletSpeed;
-            this.baseDamage = 25; //CHANGE TO BASEDAMAGE LATER IDK WHERE ACCEPTVARIABLES IS BEING CALLED            
-        }
 
         // Update
         // Runs every frame
@@ -34,7 +26,6 @@ namespace Assets.Scripts.Entities
         {
             if (internalPS)
                 internalPS.transform.position = this.transform.position;
-            transform.position += transform.forward * bulletSpeed * Time.deltaTime;   
         }
     }
 }

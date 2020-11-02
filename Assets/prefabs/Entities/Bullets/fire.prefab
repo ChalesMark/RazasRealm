@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6152268301313114878}
   - component: {fileID: 1997148353432396864}
   - component: {fileID: 1297244916392682362}
+  - component: {fileID: -8299582199900453176}
   m_Layer: 0
   m_Name: fire
   m_TagString: Untagged
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71103c900ebbcc74c92c9ed2dd9506fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseDamage: 1
+  BaseDamage: 0
   minBonusDmg: 1
   maxBonusDmg: 10
 --- !u!114 &1297244916392682362
@@ -105,6 +106,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
+--- !u!114 &-8299582199900453176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705399059138421860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8918f793e58bc3b408e52377e0471647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 7064604592614175964, guid: bb1a52153321f4446aaeac6b7e16a915, type: 3}
 --- !u!1 &8378911186589342909
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +166,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8378911186589342909}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
