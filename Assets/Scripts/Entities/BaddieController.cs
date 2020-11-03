@@ -70,7 +70,7 @@ public class BaddieController : MonoBehaviour
 
     void ScanForPlayer()
     {
-        if ((player.transform.position - this.transform.position).magnitude < 5)
+        if ((player.transform.position - this.transform.position).magnitude < AggroRange)
         {
             playerSpotted = true;
         }
@@ -78,13 +78,16 @@ public class BaddieController : MonoBehaviour
 
     void FollowPlayer()
     {
-        if ((player.transform.position - this.transform.position).magnitude < 10)
+        if ((player.transform.position - this.transform.position).magnitude < IgnoreDistance)
         {
             target = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
             this.transform.LookAt(target);
         }
         else
+        {
             playerSpotted = false;
+            GetRandomTarget();
+        }
     }
     public void Roam()
     {

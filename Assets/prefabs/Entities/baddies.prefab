@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4a5073b2ea20e468bb6392fad3ffbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   currHealth: 0
 --- !u!114 &1717910868646020818
 MonoBehaviour:
@@ -161,6 +161,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blood: {fileID: 7137356873325856154, guid: 3aa4a8c67cdf3244d98cc9768b974c04, type: 3}
   RoamDistance: 10
-  AggroRange: 10
-  IgnoreDistance: 20
+  AggroRange: 20
+  IgnoreDistance: 30
   Speed: 5
