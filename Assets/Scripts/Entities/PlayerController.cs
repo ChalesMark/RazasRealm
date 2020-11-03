@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float DashSpeed;                     // How fast the dash is
 
     public GameObject startingGun;              // The Gun the player is holding at the start
+    public GameObject startingSword;            // The Gun the player is holding at the start
 
     // Internal variables
     float dashTimeLeft;                         // How long the player has left to dash
@@ -33,6 +34,11 @@ public class PlayerController : MonoBehaviour
     public Transform gunBone;
     float fireIntervals = 0;
 
+    // Sword Stuff
+    //Sword swordData;
+    public GameObject heldSword;
+    bool slashing;
+
     // Cosmetic Stuff
     public GameObject startingHat;
     GameObject hat;
@@ -41,7 +47,8 @@ public class PlayerController : MonoBehaviour
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
     private Vector3 movement;
 
-    public KeyCode FireKey = KeyCode.Mouse0;
+    public KeyCode fireKey = KeyCode.Mouse0;
+    public KeyCode meleeKey = KeyCode.Mouse1;
     public KeyCode actionKey = KeyCode.F;
 
     GameObject currentlyLookingAt;
@@ -69,7 +76,9 @@ public class PlayerController : MonoBehaviour
         random = new UnityEngine.Random();
 
         PickupGun(startingGun);
+        PickupSword(startingSword);
         PickupHat(startingHat);
+        heldSword.GetComponentsInChildren<Renderer>()[0].enabled = false;
     }
 
     void UpdateGunData()
@@ -104,6 +113,16 @@ public class PlayerController : MonoBehaviour
         //heldGun.GetComponent<Gun>().AssignOwner(this.playerName);
         UpdateGunData();
     }
+
+    public void PickupSword(GameObject sword)
+    {
+        print("Picked up Sword");
+        if (heldSword != null)
+            Destroy(heldSword.gameObject);
+
+        heldSword = Instantiate(sword);
+    }
+
     public void PickupHat(GameObject hat)
     {
         if (this.hat != null)
@@ -116,23 +135,52 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Interactable();
+        Weapons();
+       
+    }
 
-        if (gunData != null && gunData.autoFire)
+    private void Weapons()
+    {        
+        if (!slashing)
         {
-            if (fireIntervals > 0)
-                fireIntervals -= Time.deltaTime;
-            if (fireIntervals <= 0)
-                fireIntervals = 0;
-
-            if (Input.GetKey(FireKey))
+            if (Input.GetKeyDown(meleeKey))
             {
+                Slash();
+            }
+            if (gunData != null && gunData.autoFire)
+            {
+                if (fireIntervals > 0)
+                    fireIntervals -= Time.deltaTime;
                 if (fireIntervals <= 0)
-                    Shoot();
+                    fireIntervals = 0;
+
+                if (Input.GetKey(fireKey))
+                {
+                    if (fireIntervals <= 0)
+                        Shoot();
+                }
+            }
+            else if (Input.GetKeyDown(fireKey))
+            {
+                Shoot();
             }
         }
-        else if (Input.GetKeyDown(FireKey))
+        else
         {
-            Shoot();
+            if (animator.GetCurrentAnimatorStateInfo(1).IsName("player_armature|null"))
+            {
+                heldGun.GetComponentsInChildren<Renderer>()[0].enabled = true;
+                heldSword.GetComponentsInChildren<Renderer>()[0].enabled = false;
+                slashing = false;
+            }
+        }
+        if (animator.GetCurrentAnimatorStateInfo(1).IsName("player_armature|null"))
+        {
+            animator.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 1);
         }
     }
 
@@ -168,6 +216,11 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
             WASD();
         MouseLook();
+        if (heldSword != null)
+        {
+            heldSword.transform.position = gunBone.position;
+            heldSword.transform.rotation = gunBone.rotation;
+        }
         if (heldGun != null)
         {
             heldGun.transform.position = gunBone.position;
@@ -205,6 +258,14 @@ public class PlayerController : MonoBehaviour
                 characterController.transform.rotation * Quaternion.Euler(0, randomSpread, 0),
                 null);
         }
+    }
+
+    void Slash()
+    {
+        slashing = true;
+        heldGun.GetComponentsInChildren<Renderer>()[0].enabled = false;
+        heldSword.GetComponentsInChildren<Renderer>()[0].enabled = true;
+        animator.SetTrigger("slash");
     }
 
     // MouseLook

@@ -988,12 +988,17 @@ MonoBehaviour:
   DashSpeed: 10
   startingGun: {fileID: 4520463788982008768, guid: 5b2ce4a25aff0da43941042edae63b02,
     type: 3}
+  startingSword: {fileID: 3774858584188603004, guid: 653cee4e8e8983f47b7842e3dcf06401,
+    type: 3}
   heldGun: {fileID: 0}
   gunBone: {fileID: 4143532483804306965}
+  heldSword: {fileID: 0}
   startingHat: {fileID: 5922920252131738943, guid: ef2a63da3f153c742aabc25f0e4c3a5a,
     type: 3}
   hatBone: {fileID: 7683795563985219877}
-  FireKey: 323
+  fireKey: 323
+  meleeKey: 324
+  actionKey: 102
 --- !u!143 &1889676449253558044
 CharacterController:
   m_ObjectHideFlags: 0

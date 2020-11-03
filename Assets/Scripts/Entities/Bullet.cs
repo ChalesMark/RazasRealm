@@ -13,6 +13,14 @@ namespace Assets.Scripts.Entities
         public float bulletSpeed;
         public int baseDamage;
         public string owner;
+        public ParticleSystem ps;
+        ParticleSystem internalPS;
+
+        private void Start()
+        {
+            if (ps)
+                internalPS = Instantiate(ps);
+        }
 
         public void AcceptVariables(float bulletLifeSpan,float randomBulletLifeSpan, float bulletSpeed, int baseDamage)
         {
@@ -24,6 +32,8 @@ namespace Assets.Scripts.Entities
         // Runs every frame
         void Update()
         {
+            if (internalPS)
+                internalPS.transform.position = this.transform.position;
             transform.position += transform.forward * bulletSpeed * Time.deltaTime;   
         }
     }
