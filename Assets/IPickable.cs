@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBuyable
+public interface IPickable: IInteractable
 {
-    bool Buy(MoneyController controller);
+    void Pickup(GearController controller);
 }
-

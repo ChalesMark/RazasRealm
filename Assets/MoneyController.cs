@@ -6,28 +6,26 @@ using UnityEngine.UI;
 
 public class MoneyController : MonoBehaviour
 {
-    public static int amount = 0;
-    Text moneyUI;
-    // Start is called before the first frame update
-    void Start()
-    {
-        moneyUI = GetComponent<Text>();
-    }
+    [SerializeField]
+    private int amount = 0;
+    private Text moneyUI;
 
     // Update is called once per frame
     void Update()
     {
+        moneyUI = Camera.main.transform.Find("Canvas").Find("MoneyText").GetComponent<Text>();
         moneyUI.text = "$" + amount + ".00";
     }
 
-    public static bool CanBuy(IBuyable buyable)
-    {
-        if (buyable.Cost <= amount)
-        {
-            amount -= buyable.Cost;
-            return true;
-        }
-        else
-            return false;
+    public int GetMoney() {
+        return amount;
+    }
+
+    public void DeductMoney(int deduction) {
+        amount -= deduction;
+    }
+
+    public void AddMoney(int adding) {
+        amount += adding;
     }
 }

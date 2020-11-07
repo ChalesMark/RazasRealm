@@ -35,9 +35,6 @@ public class HealthController : MonoBehaviour
 
 
     public void Kill() {
-        if (!dead)
-            MoneyController.amount += 1;
-
         dead = true;
         Destroy(gameObject);
     }
