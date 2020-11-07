@@ -12,9 +12,13 @@ public class PlayerController : MonoBehaviour
 {
     // These are public fields that we edit in the inspector 
     [Header("Player Settings")]
-    public float moveSpeed;                     // How fast the player moves
+    public float baseMoveSpeed;
+    public float currMoveSpeed;                // How fast the player moves
     public float DashDuration;                  // How long their dash lasts
     public float DashSpeed;                     // How fast the dash is
+
+    private bool lockShooting = false;
+    private bool lockMovement = false;
 
     public GameObject startingGun;              // The Gun the player is holding at the start
     public GameObject startingSword;            // The Gun the player is holding at the start
@@ -37,7 +41,6 @@ public class PlayerController : MonoBehaviour
     // Sword Stuff
     //Sword swordData;
     public GameObject heldSword;
-    bool slashing;
 
     // Cosmetic Stuff
     public GameObject startingHat;
@@ -48,7 +51,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
 
     public KeyCode fireKey = KeyCode.Mouse0;
-    public KeyCode meleeKey = KeyCode.Mouse1;
     public KeyCode actionKey = KeyCode.F;
 
     GameObject currentlyLookingAt;
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
         PickupGun(startingGun);
         PickupSword(startingSword);
         PickupHat(startingHat);
+        currMoveSpeed = baseMoveSpeed;
         heldSword.GetComponentsInChildren<Renderer>()[0].enabled = false;
     }
 
@@ -134,19 +137,14 @@ public class PlayerController : MonoBehaviour
     // Runs every frame
     void Update()
     {
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Interactable();
-        Weapons();
-       
+        Weapons();  
     }
 
     private void Weapons()
     {        
-        if (!slashing)
-        {
-            if (Input.GetKeyDown(meleeKey))
-            {
-                Slash();
-            }
+        if(!lockShooting) {
             if (gunData != null && gunData.autoFire)
             {
                 if (fireIntervals > 0)
@@ -164,23 +162,22 @@ public class PlayerController : MonoBehaviour
             {
                 Shoot();
             }
-        }
-        else
-        {
+            else
+            {
+                if (animator.GetCurrentAnimatorStateInfo(1).IsName("player_armature|null"))
+                {
+                    heldGun.GetComponentsInChildren<Renderer>()[0].enabled = true;
+                    heldSword.GetComponentsInChildren<Renderer>()[0].enabled = false;
+                }
+            }
             if (animator.GetCurrentAnimatorStateInfo(1).IsName("player_armature|null"))
             {
-                heldGun.GetComponentsInChildren<Renderer>()[0].enabled = true;
-                heldSword.GetComponentsInChildren<Renderer>()[0].enabled = false;
-                slashing = false;
+                animator.SetLayerWeight(1, 0);
             }
-        }
-        if (animator.GetCurrentAnimatorStateInfo(1).IsName("player_armature|null"))
-        {
-            animator.SetLayerWeight(1, 0);
-        }
-        else
-        {
-            animator.SetLayerWeight(1, 1);
+            else
+            {
+                animator.SetLayerWeight(1, 1);
+            }
         }
     }
 
@@ -213,8 +210,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (animator != null)
-            WASD();
+        WASD();
         MouseLook();
         if (heldSword != null)
         {
@@ -236,9 +232,11 @@ public class PlayerController : MonoBehaviour
 
     void WASD() 
     {
-        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        animator.SetBool("moving", movement == Vector3.zero ? false : true);
-        characterController.Move(movement * moveSpeed * Time.deltaTime);
+        if(!lockMovement)
+        {
+            animator.SetBool("moving", movement == Vector3.zero ? false : true);
+            characterController.Move(movement * currMoveSpeed * Time.deltaTime);
+        }
     }
 
     // Shoot
@@ -258,14 +256,6 @@ public class PlayerController : MonoBehaviour
                 characterController.transform.rotation * Quaternion.Euler(0, randomSpread, 0),
                 null);
         }
-    }
-
-    void Slash()
-    {
-        slashing = true;
-        heldGun.GetComponentsInChildren<Renderer>()[0].enabled = false;
-        heldSword.GetComponentsInChildren<Renderer>()[0].enabled = true;
-        animator.SetTrigger("slash");
     }
 
     // MouseLook
@@ -298,4 +288,14 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void LockShooting(bool lockShoot) 
+    {
+        lockShooting = lockShoot;
+    }
+
+    public void LockMovement(bool lockMove) {
+        lockMovement = lockMove;
+    }
+
 }
