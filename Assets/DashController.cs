@@ -6,10 +6,11 @@ public class DashController : MonoBehaviour
 {
 
     public float distanceModifier;              //The distance you will travel upon release
-    public KeyCode meleeKey = KeyCode.Mouse1;
+
     private PlayerController playerController;
     private Animator animator;
     private CharacterController characterController;
+    private KeyboardControls keyboardControls;
 
     //TEMP VALUES
     public int dashType = 0;
@@ -22,17 +23,18 @@ public class DashController : MonoBehaviour
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         animator.SetInteger("DashType", dashType);
+        keyboardControls = GetComponent<KeyboardControls>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("DashCharging", Input.GetKeyDown(meleeKey));
+        animator.SetBool("DashCharging", Input.GetKeyDown(keyboardControls.meleeKey));
         if(animator.GetBool("DashCharging")) {
             playerController.LockMovement(true);
             playerController.LockShooting(true);
         }
-        animator.SetBool("Dashing", Input.GetKeyUp(meleeKey));
+        animator.SetBool("Dashing", Input.GetKeyUp(keyboardControls.meleeKey));
         if(animator.GetBool("Dashing")) 
         {
             characterController.Move(transform.forward * playerController.currMoveSpeed * distanceModifier * Time.deltaTime);

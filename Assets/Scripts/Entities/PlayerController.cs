@@ -14,8 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     public float baseMoveSpeed;
     public float currMoveSpeed;                // How fast the player moves
-    public float DashDuration;                  // How long their dash lasts
-    public float DashSpeed;                     // How fast the dash is
+
 
     private bool lockShooting = false;
     private bool lockMovement = false;
@@ -23,9 +22,6 @@ public class PlayerController : MonoBehaviour
     public GameObject startingGun;              // The Gun the player is holding at the start
     public GameObject startingSword;            // The Gun the player is holding at the start
 
-    // Internal variables
-    float dashTimeLeft;                         // How long the player has left to dash
-    bool dashing = false;                       // Flag for if the player is dashing
     int keyCount;                               // How many keys they have
     CharacterController characterController;    // The controller for handling collison and movment
     CameraController camera;
@@ -46,12 +42,11 @@ public class PlayerController : MonoBehaviour
     public GameObject startingHat;
     GameObject hat;
     public Transform hatBone;
+    private KeyboardControls keyboardControls;
 
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
     private Vector3 movement;
 
-    public KeyCode fireKey = KeyCode.Mouse0;
-    public KeyCode actionKey = KeyCode.F;
 
     GameObject currentlyLookingAt;
 
@@ -76,6 +71,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         ground = GameObject.Find("Plane");
         random = new UnityEngine.Random();
+        keyboardControls = GetComponent<KeyboardControls>();
 
         PickupGun(startingGun);
         PickupSword(startingSword);
@@ -152,13 +148,13 @@ public class PlayerController : MonoBehaviour
                 if (fireIntervals <= 0)
                     fireIntervals = 0;
 
-                if (Input.GetKey(fireKey))
+                if (Input.GetKey(keyboardControls.fireKey))
                 {
                     if (fireIntervals <= 0)
                         Shoot();
                 }
             }
-            else if (Input.GetKeyDown(fireKey))
+            else if (Input.GetKeyDown(keyboardControls.fireKey))
             {
                 Shoot();
             }
@@ -198,7 +194,7 @@ public class PlayerController : MonoBehaviour
             currentlyLookingAt = null;
         }
 
-        if (Input.GetKey(actionKey) && currentlyLookingAt != null)
+        if (Input.GetKey(keyboardControls.actionKey) && currentlyLookingAt != null)
         {
             if (currentlyLookingAt.GetComponent<Talkable>() != null)
             {
