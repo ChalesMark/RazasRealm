@@ -948,7 +948,6 @@ GameObject:
   - component: {fileID: 1889676449253558044}
   - component: {fileID: 4208940804534007114}
   - component: {fileID: 8951076789383006062}
-  - component: {fileID: -334869138529145764}
   - component: {fileID: 1321971780952021750}
   - component: {fileID: 4715869603818176219}
   - component: {fileID: -5677742407701039171}
@@ -1021,21 +1020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currHealth: 0
---- !u!114 &-334869138529145764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9045097437185919970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1175b6bf66a71694087408321536a5ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireKey: 323
-  meleeKey: 324
-  actionKey: 102
 --- !u!95 &1321971780952021750
 Animator:
   serializedVersion: 3
@@ -1067,7 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1a6a16f4c7e6f4d9c08456f46add91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 4520463788982008768, guid: 5b2ce4a25aff0da43941042edae63b02, type: 3}
+  weapon: {fileID: 9052660638562679620, guid: 5b2ce4a25aff0da43941042edae63b02, type: 3}
   hat: {fileID: 5922920252131738943, guid: ef2a63da3f153c742aabc25f0e4c3a5a, type: 3}
   gunBone: {fileID: 4143532483804306965}
   hatBone: {fileID: 7683795563985219877}

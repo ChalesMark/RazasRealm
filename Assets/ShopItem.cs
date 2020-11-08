@@ -28,11 +28,13 @@ public class ShopItem : MonoBehaviour, IBuyable, IPickable
     }
 
     public void Pickup(GearController controller) {
-       controller.SwitchGun(gameObject);
-       if(permanentStock) {
-           GameObject ShopItem = Instantiate(gameObject);
-           ShopItem.name = gameObject.name;
-       }
+        if(permanentStock) 
+        {
+            GameObject shopItem = Instantiate(gameObject);
+            shopItem.name = gameObject.name;
+        }
+       controller.SwitchWeapon(gameObject);
+       Destroy(this);
     }
 
     public string GetInteractText() {

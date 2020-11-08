@@ -18,13 +18,9 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;    // The controller for handling collison and movment
     CameraController camera;
     Animator animator;
-    GameObject ground;
-    private KeyboardControls keyboardControls;
 
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
     private Vector3 movement;
-    GameObject currentlyLookingAt;
-    UnityEngine.Random random;
 
     // Start
     // Runs once the object is loaded in
@@ -32,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         camera = Camera.main.GetComponent<CameraController>();
-        keyboardControls = GetComponent<KeyboardControls>();
         animator = GetComponent<Animator>();
     }
     

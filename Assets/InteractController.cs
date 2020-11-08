@@ -7,18 +7,16 @@ using UnityEngine.UI;
 public class InteractController : MonoBehaviour
 {
     private Text buyText;
-    private KeyboardControls keyboardControls;
     private bool checkForInput;
     private IInteractable interactable;
 
     void Start() {
-        keyboardControls = GetComponent<KeyboardControls>();
         buyText = Camera.main.transform.Find("Canvas").Find("BuyText").GetComponent<Text>();
         buyText.enabled = false;
     }
 
     void Update() {
-        if(checkForInput && interactable != null && Input.GetKeyDown(keyboardControls.GetActionKey())) {
+        if(checkForInput && interactable != null && Input.GetKeyDown(KeyCode.F)) {
             interactable.Interact(this);
         }
     }
