@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class GearController : MonoBehaviour
 {
-    public GameObject weapon;
+    public WeaponScript weapon;
+
+    private WeaponScript Weapon
+    {
+        get
+        {
+            return weapon;
+        }
+        set
+        {
+            print("SETTING");
+            weapon = value;
+            weapon.enabled = true;      
+        }
+    }
+
     public GameObject hat;
 
     public Transform gunBone;
@@ -12,20 +27,14 @@ public class GearController : MonoBehaviour
 
 
     void Start() {
-        weapon = Instantiate(weapon);
         hat = Instantiate(hat);
-
-        foreach(Component component in weapon.GetComponents(typeof(IWeaponComponent))) {
-            Behaviour bhvr = (Behaviour)component;
-            bhvr.enabled = true;
-        }
+        Weapon = Instantiate(weapon);
     }
 
     void Update() {
 
         if(weapon.transform.parent == null) {
             weapon.transform.parent = gameObject.transform;
-            weapon.GetComponent<BoxCollider>().enabled = false;
         }
 
         if(hat.transform.parent == null) {
@@ -40,23 +49,13 @@ public class GearController : MonoBehaviour
     }
 
 
-    public void SwitchWeapon(GameObject newWeapon) {
-        Destroy(weapon);
-        weapon = newWeapon;
-        foreach(Component component in newWeapon.GetComponents(typeof(IWeaponComponent))) {
-            Behaviour bhvr = (Behaviour)component;
-            bhvr.enabled = true;
-            print("ENABLING " + bhvr);
-        }
+    public void SwitchWeapon(WeaponScript newWeapon) {
+        Destroy(Weapon);
+        Weapon = newWeapon;
     }
 
     public void SwitchHat(GameObject newHat) {
         Destroy(hat);
         hat = newHat;
-    }
-
-    private void RemoveSafety(GameObject weapon)
-    {
-
     }
 }

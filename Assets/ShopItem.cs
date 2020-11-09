@@ -33,7 +33,9 @@ public class ShopItem : MonoBehaviour, IBuyable, IPickable
             GameObject shopItem = Instantiate(gameObject);
             shopItem.name = gameObject.name;
         }
-       controller.SwitchWeapon(gameObject);
+
+        //TODO maybe switch WeaponScript out with more generic? idk
+       controller.SwitchWeapon(GetComponent<WeaponScript>());
        Destroy(this);
     }
 

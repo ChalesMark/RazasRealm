@@ -6,7 +6,7 @@ public class RangedSpecial : MonoBehaviour, ISpecialAttack
 { 
 
 
-    private void Update() 
+    public void RunWeaponComponent() 
     {
         if(Input.GetKeyDown(KeyCode.Mouse1)) 
         {

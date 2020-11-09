@@ -2,4 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IWeaponComponent{} 
+public interface IWeaponComponent{
+
+    void RunWeaponComponent();
+} 

@@ -17,7 +17,7 @@ public class RangedAttack : MonoBehaviour, IAttackable
 
 
 
-    private void Update() 
+    public void RunWeaponComponent() 
     {
         if(Input.GetKeyDown(KeyCode.Mouse0)) 
         {
