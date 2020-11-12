@@ -7,15 +7,13 @@ public class DamageController : MonoBehaviour
     // Start is called before the first frame update
     public int BaseDamage;
 
-    public int minBonusDmg;
-
-    public int maxBonusDmg;
+    public float DamageRange;
 
     public int Damage(HealthController healthController) {
         //play a hit/collide particle effect or something idk
-        int dmg = BaseDamage + UnityEngine.Random.Range(minBonusDmg, maxBonusDmg + 1);
+        float range = BaseDamage * DamageRange;
+        int dmg = BaseDamage + Mathf.RoundToInt(UnityEngine.Random.Range(-range, range));
         healthController.DecreaseCurrentHealth(dmg);
         return dmg;
     }
-
 }

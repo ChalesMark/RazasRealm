@@ -12,6 +12,4 @@ class BulletSpeedController : MonoBehaviour
     {
         transform.position += transform.forward * Speed * Time.deltaTime;   
     }
-
-
 }

@@ -50,7 +50,7 @@ public class GearController : MonoBehaviour
 
 
     public void SwitchWeapon(WeaponScript newWeapon) {
-        Destroy(Weapon);
+        Destroy(Weapon.gameObject);
         Weapon = newWeapon;
     }
 

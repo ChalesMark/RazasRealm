@@ -103,8 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseDamage: 25
-  minBonusDmg: 0
-  maxBonusDmg: 15
+  DamageRange: 0.1
 --- !u!1 &8045450241773100248
 GameObject:
   m_ObjectHideFlags: 0

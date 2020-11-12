@@ -197,6 +197,36 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &5832471020207949856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4984372574793185433}
+  m_Layer: 0
+  m_Name: projectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4984372574793185433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832471020207949856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.006, y: 0.294, z: 0.685}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8568751743955902974}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9052660638562679620
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,15 +255,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9052660638562679620}
-  m_LocalRotation: {x: -0.0076234676, y: 0.009181279, z: 0.0000700087, w: 0.99992883}
+  m_LocalRotation: {x: -0.0076266276, y: 0.009180081, z: 0.000070018046, w: 0.99992883}
   m_LocalPosition: {x: -4.3507357, y: 0.77652735, z: -10.581811}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9122716684087267494}
   - {fileID: 4835295066361793760}
+  - {fileID: 4984372574793185433}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 84.807, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.874, y: 1.052, z: 0}
 --- !u!65 &4835295067397810016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -285,11 +316,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46cab9f6c6db14c4c978f004c2a5ab9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 1309111246164075521, guid: 6738d269e05fd1b44afd89abc574b3c2,
+    type: 3}
   projectileCount: 0
-  spread: 0
-  fireRate: 0
+  spread: 1
+  autofireRate: 0.2
   automatic: 0
+  manualfireCooldown: 0.5
+  baseDamage: 10
+  projectileSpeed: 40
+  projectileLifeSpan: 0.5
 --- !u!114 &-3298001274245007803
 MonoBehaviour:
   m_ObjectHideFlags: 0
