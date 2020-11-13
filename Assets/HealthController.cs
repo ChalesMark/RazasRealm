@@ -18,7 +18,7 @@ public class HealthController : MonoBehaviour
 
     public void DecreaseCurrentHealth(int damage) {
         currHealth -= damage;
-        if(currHealth < 0) {
+        if(currHealth < 0 && !dead) {
             currHealth = 0;
             Kill();
         }   
@@ -36,6 +36,12 @@ public class HealthController : MonoBehaviour
 
     public void Kill() {
         dead = true;
+        if(tag == "Enemy")
+            GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);
+        if (GetComponent<BossController>() != null)
+        {
+            GetComponent<BossController>().Die();
+        }
         Destroy(gameObject);
     }
 

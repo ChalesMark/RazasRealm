@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class BaddieController : MonoBehaviour
+public class BaddieController : MonoBehaviour, IEnemyController
 {
-    GameObject player;
+    private GameObject player;
     public GameObject blood;
-
+    public int killGold;
     private Vector3 target;
     private bool playerSpotted;
     private float distanceToTarget;
 
     [Header("Movement AI Settings:")]
-    [Tooltip("Max distance an enemy can roam in a single direction at a time")]
-    [Range(5.0f, 40.0f)]
+    [Tooltip("Max distance an enemy can roam in any direction from it's spawm")]
+    [Range(5.0f, 100.0f)]
     public int RoamDistance = 10;
     [Tooltip("Distance the enemy can spot the player from")]
     [Range(0.0f, 40.0f)]
@@ -28,8 +28,23 @@ public class BaddieController : MonoBehaviour
 
     Animator animator;
 
+    //Roam boundary square
+    private float roamXBottom;
+    private float roamXTop;
+    private float roamZBottom;
+    private float roamZTop;
+
+    int IEnemyController.KillGold { get { return killGold; } }
+    bool IEnemyController.PlayerSpotted { get { return playerSpotted; } }
+
+
     private void Start()
     {
+        roamXBottom = transform.position.x - RoamDistance;
+        roamXTop = transform.position.x + RoamDistance;
+        roamZBottom = transform.position.z - RoamDistance;
+        roamZTop = transform.position.z + RoamDistance;
+
         animator = GetComponent<Animator>();
         animator.SetBool("Moving",true);
         playerSpotted = false;
@@ -65,11 +80,12 @@ public class BaddieController : MonoBehaviour
         Instantiate(blood, transform.position, Quaternion.LookRotation(Camera.main.transform.position - transform.position));
     }
 
+
     void GetRandomTarget()
     {
-        target = new Vector3(Random.Range(transform.position.x - RoamDistance, transform.position.x + RoamDistance), 
+        target = new Vector3(Random.Range(roamXBottom, roamXTop), 
                              transform.position.y, 
-                             Random.Range(transform.position.z - RoamDistance, transform.position.z + RoamDistance));
+                             Random.Range(roamZBottom, roamZTop));
         transform.LookAt(target);
     }
 

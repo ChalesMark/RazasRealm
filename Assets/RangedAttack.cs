@@ -30,14 +30,16 @@ public class RangedAttack : MonoBehaviour, IAttackable
     {
         if (onCooldown)
             return;
-        else if(automatic && Input.GetKey(KeyCode.Mouse0)) 
-        {
+        else if (automatic && Input.GetKey(KeyCode.Mouse0))
             Attack();
-        }
-        else if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
+        else if (Input.GetKeyDown(KeyCode.Mouse0))
             Attack();
-        }
+        //for testing
+        else if (Input.GetKeyDown(KeyCode.Q))
+            projectileCount++;
+        else if (Input.GetKeyDown(KeyCode.E))
+            projectileCount--;
+
     }
 
 
@@ -46,7 +48,9 @@ public class RangedAttack : MonoBehaviour, IAttackable
         projectile.GetComponent<DamageController>().BaseDamage = baseDamage;
         projectile.GetComponent<BulletSpeedController>().Speed = projectileSpeed;
         projectile.GetComponent<LifeSpanController>().Lifespan = projectileLifeSpan;
-        Instantiate(projectile, gameObject.transform.Find("projectileSpawn").transform.position, transform.rotation);
+        for (int i = 0; i < projectileCount; i++)
+            Instantiate(projectile, gameObject.transform.Find("projectileSpawn").transform.position, transform.rotation * Quaternion.AngleAxis(UnityEngine.Random.Range(-spread, spread), Vector3.up));
+
         onCooldown = true;
         StartCoroutine(CooldownCoroutine(automatic ? autofireRate : manualfireCooldown));
 
@@ -58,4 +62,5 @@ public class RangedAttack : MonoBehaviour, IAttackable
         yield return new WaitForSeconds(seconds);
         onCooldown = false;
     }
+
 }

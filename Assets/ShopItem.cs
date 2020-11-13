@@ -40,6 +40,6 @@ public class ShopItem : MonoBehaviour, IBuyable, IPickable
     }
 
     public string GetInteractText() {
-        return "Press [Interact] to Buy " + gameObject.name + " For " + cost;
+        return "Interact to buy " + gameObject.name + " for $" + cost + ".00";
     }
 }

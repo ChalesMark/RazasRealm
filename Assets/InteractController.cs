@@ -42,6 +42,11 @@ public class InteractController : MonoBehaviour
     public GameObject GetEntity() {
         return gameObject;
     }
+    
+    public void InteractableConsumed(GameObject other)
+    {
+        OnTriggerExit(other.GetComponent<Collider>());
+    }
 
 
 }
