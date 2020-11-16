@@ -12,16 +12,31 @@ public class CameraController : MonoBehaviour
     // These are public fields that we edit in the inspector 
     [Header("Camera Settings")]
     public float distance;                              // Distance from the user, I left this public in case we wanted to play with it
+
     [Header("Please don't change these, unless we have to")]
     public GameObject fade;                             // This is where the big black image thing is put for level transitions
     public Text outputText;
     public Text speaker;
     public Image chatBoxBG;
+    
     float outputTextFade;
 
     public Transform target;                                   // The target that the camera will be following
     float fadeOpacity = 0;                              // The opacity of the 'fade' object
     float fadeSpeed = 1f;
+
+    [Header("Customization Menu Stuff")]
+    public GameObject customizationMenu;
+    public Button previousHat;
+    public Button nextHat;
+    public Button customClose;
+
+    Transform specialLook = null;                       // This is used for special camera angles
+
+    void Awake()
+    {
+        customizationMenu.SetActive(false);
+    }
 
     // Update
     // Runs every frame
@@ -29,23 +44,22 @@ public class CameraController : MonoBehaviour
     {
         if (target != null)
         {
-            /*
-            if (!disableSmoothCameraMove)
+            if (!specialLook)
             {
                 this.transform.rotation = Quaternion.Euler(50, 0, 0);
-                this.transform.position =
-                    Vector3.Lerp(
-                        this.transform.position,
-                        target.position + new Vector3(0, distance + distance / 4, -distance),
-                        Vector3.Distance(this.transform.position, target.position) * Time.deltaTime);
+                this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);
             }
             else
             {
-            */
-            this.transform.rotation = Quaternion.Euler(50, 0, 0);
-            this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);
-            //}
+                this.transform.rotation = specialLook.rotation;
+                this.transform.position = target.position + specialLook.position;
+            }
         }
+    }
+
+    public void ChangeSpecialLook(Transform transform)
+    {
+        specialLook = transform;
     }
 
     // SetTarget
@@ -102,6 +116,7 @@ public class CameraController : MonoBehaviour
             chatBoxBG.color = new Color(chatBoxBG.color.r, chatBoxBG.color.g, chatBoxBG.color.b, 1);
         else
             chatBoxBG.color = new Color(chatBoxBG.color.r, chatBoxBG.color.g, chatBoxBG.color.b, 0);
+
         outputText.color = new Color(1, 1, 1, 1);
         speaker.color = new Color(1, 1, 1, 1);
         StartCoroutine(WaitToRead(text,time));       
@@ -115,10 +130,16 @@ public class CameraController : MonoBehaviour
             outputText.color = new Color(1, 1, 1, outputTextFade);
             yield return new WaitForSeconds(time);
         }
-        StartCoroutine(fadeOutTextOutput());
+        StartCoroutine(FadeOutTextOutput());
+       
     }
 
-    public IEnumerator fadeOutTextOutput()
+    public Button GetCustomCloseButton()
+    {
+        return customClose;
+    }
+
+    public IEnumerator FadeOutTextOutput()
     {
         do
         {

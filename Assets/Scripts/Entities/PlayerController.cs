@@ -16,18 +16,21 @@ public class PlayerController : MonoBehaviour
     private bool lockMovement = false;
 
     CharacterController characterController;    // The controller for handling collison and movment
-    CameraController camera;
+    GearController gearController;
     Animator animator;
 
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
     private Vector3 movement;
 
+    private GameObject currentlyLookingAt;
+    public KeyCode actionKey = KeyCode.F;
+
     // Start
     // Runs once the object is loaded in
-    void Start()
+    void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        camera = Camera.main.GetComponent<CameraController>();
+        gearController = GetComponent<GearController>();
         animator = GetComponent<Animator>();
     }
     
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         MouseLook();
+        RayTraceInteract();
     }
 
     private void FixedUpdate()
@@ -81,4 +85,41 @@ public class PlayerController : MonoBehaviour
         lockMovement = lockMove;
     }
 
+    // DO NOT DELETE THIS
+    private void RayTraceInteract()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(
+            new Vector3(this.transform.position.x, 0.5f, this.transform.position.z),
+            this.transform.forward,
+            out hit,
+            3f
+            ))
+        {
+            currentlyLookingAt = hit.transform.gameObject;
+        }
+        else
+        {
+            currentlyLookingAt = null;
+        }
+
+        if (Input.GetKeyDown(actionKey) && currentlyLookingAt != null)
+        {
+
+            if (currentlyLookingAt.GetComponent<MarksIInteractable>() != null)
+            {
+                currentlyLookingAt.GetComponent<MarksIInteractable>().Interact();           
+            }
+        }
+    }
+
+    internal void StopAnimation()
+    {
+        animator.SetBool("moving", false);
+    }
+
+    internal void DisableGun(bool disable)
+    {
+        gearController.weapon.canShoot = disable;
+    }
 }

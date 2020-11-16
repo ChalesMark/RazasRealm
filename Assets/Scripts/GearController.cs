@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GearController : MonoBehaviour
 {
     public WeaponScript weapon;
-
+    
     private WeaponScript Weapon
     {
         get
@@ -37,9 +38,11 @@ public class GearController : MonoBehaviour
             weapon.transform.parent = gameObject.transform;
         }
 
+        /*
         if(hat.transform.parent == null) {
             hat.transform.parent = gameObject.transform;
         }
+        */
 
         weapon.transform.position = gunBone.position;
         weapon.transform.rotation = gunBone.rotation;
@@ -55,7 +58,15 @@ public class GearController : MonoBehaviour
     }
 
     public void SwitchHat(GameObject newHat) {
-        Destroy(hat);
-        hat = newHat;
+        Destroy(hat.gameObject);
+        hat = Instantiate(newHat);
+    }
+
+    internal void RecieveValues(GameObject lastHat, GameObject lastGun)
+    {
+        SwitchWeapon(lastGun.GetComponent<WeaponScript>());
+        SwitchHat(lastHat);
+        Destroy(lastHat.gameObject);
+        Destroy(lastGun.gameObject);
     }
 }

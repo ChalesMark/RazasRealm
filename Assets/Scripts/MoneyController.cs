@@ -10,10 +10,14 @@ public class MoneyController : MonoBehaviour
     private int amount = 0;
     private Text moneyUI;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
         moneyUI = Camera.main.transform.Find("Canvas").Find("MoneyText").GetComponent<Text>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {        
         moneyUI.text = "$" + amount + ".00";
     }
 
