@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 435208006}
   m_Layer: 0
   m_Name: East Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 444896037}
   m_Layer: 0
   m_Name: North Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1975,7 +1975,7 @@ GameObject:
   - component: {fileID: 1228501598}
   m_Layer: 0
   m_Name: West Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2054,7 +2054,7 @@ Transform:
   m_LocalScale: {x: 83.46274, y: 7.1443543, z: 1}
   m_Children: []
   m_Father: {fileID: 1243914806}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!54 &1228501598
 Rigidbody:
@@ -2101,8 +2101,8 @@ Transform:
   m_Children:
   - {fileID: 444896036}
   - {fileID: 435208005}
-  - {fileID: 1228501597}
   - {fileID: 1339883549}
+  - {fileID: 1228501597}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2329,7 +2329,7 @@ GameObject:
   - component: {fileID: 1339883550}
   m_Layer: 0
   m_Name: South Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2408,7 +2408,7 @@ Transform:
   m_LocalScale: {x: 83.462746, y: 7.1443543, z: 1}
   m_Children: []
   m_Father: {fileID: 1243914806}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1339883550
 Rigidbody:
@@ -3402,8 +3402,26 @@ PrefabInstance:
     - target: {fileID: 9108464067183589685, guid: 4f5b15c5728d2b9419d41ef3d2e2c6d8,
         type: 3}
       propertyPath: baseEnemyCount
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9108464067183589685, guid: 4f5b15c5728d2b9419d41ef3d2e2c6d8,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 5839909585676078829, guid: 312b72be453fb1245b627965f0e3f017,
+        type: 3}
+    - target: {fileID: 9108464067183589685, guid: 4f5b15c5728d2b9419d41ef3d2e2c6d8,
+        type: 3}
+      propertyPath: Enemy2
+      value: 
+      objectReference: {fileID: 4289284078382686832, guid: 7055eb1818ce68f42803aebbfa182fe7,
+        type: 3}
+    - target: {fileID: 9108464067183589685, guid: 4f5b15c5728d2b9419d41ef3d2e2c6d8,
+        type: 3}
+      propertyPath: Enemy3
+      value: 
+      objectReference: {fileID: 473776359124142332, guid: ff2dd1dbaa583db4e85b454a3f5ebbc2,
+        type: 3}
     - target: {fileID: 9108464067183589686, guid: 4f5b15c5728d2b9419d41ef3d2e2c6d8,
         type: 3}
       propertyPath: m_LocalPosition.x

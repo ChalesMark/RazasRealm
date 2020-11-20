@@ -724,10 +724,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3516547733887219914}
+  - component: {fileID: 1165195703732842364}
+  - component: {fileID: 95890117170643923}
   - component: {fileID: 3983417331239886631}
+  - component: {fileID: 784314540644419775}
+  - component: {fileID: 2266753808620833097}
   m_Layer: 0
   m_Name: Lizard3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -748,6 +752,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1165195703732842364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289284078382686832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a36d1623be343141afabef691ae40e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood: {fileID: 7137356873325856154, guid: 3aa4a8c67cdf3244d98cc9768b974c04, type: 3}
+  damageNumbers: {fileID: 4362682648724695287, guid: f26ffdb970e2657459fab45e5f05da33,
+    type: 3}
+  killGold: 1
+  RoamDistance: 70
+  AggroRange: 40
+  IgnoreDistance: 100
+  Speed: 7
+  AttackCooldownTime: 3
+  Damage: 5
+--- !u!114 &95890117170643923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289284078382686832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4a5073b2ea20e468bb6392fad3ffbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  enemyHealthScaling: 10
+  currHealth: 0
+  dead: 0
 --- !u!95 &3983417331239886631
 Animator:
   serializedVersion: 3
@@ -767,6 +809,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &784314540644419775
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289284078382686832}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.366787, y: 1.4537525, z: 2.1382775}
+  m_Center: {x: -0.028954506, y: 0.74417067, z: 0.065148115}
+--- !u!143 &2266753808620833097
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289284078382686832}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 1.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4347051672708339987
 GameObject:
   m_ObjectHideFlags: 0

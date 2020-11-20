@@ -5,29 +5,34 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    public GameObject baseEnemy;
+    public GameObject Enemy1;
+    public GameObject Enemy2;
+    public GameObject Enemy3;
 
-    public int baseEnemyCount;
+    public int baseEnemyCount = 0;
+    public float timeBetweenWaves = 3;
+
     private List<Transform> spawnPoints;
-    private Text waveText;
-
+    private List<GameObject> enemies;
+    private Text waveText; 
+    private Text enemiesRemainingText;
     private int currentWave;
     private int enemiesSpawnedThisWave;
     private int totalEnemiesThisWave;
-    private bool finishedSpawning = false;
     private int enemiesRemaining;
     private float timeBetweenSpawns = 3.0f;
-
-    private Text enemiesRemainingText;
+    private bool finishedSpawning = false;
     
     // Start is called before the first frame update
     void Start()
     {
         spawnPoints = GetSpawnPoints();
+        enemies = GetEnemiesToSpawn();
         currentWave = 0;
         enemiesSpawnedThisWave = 0;
         totalEnemiesThisWave = baseEnemyCount;
         waveText = Camera.main.transform.Find("Canvas").Find("WaveText").GetComponent<Text>();
+        waveText.enabled = false;
         enemiesRemainingText = Camera.main.transform.Find("Canvas").Find("EnemyCount").GetComponent<Text>();
         enemiesRemainingText.enabled = false;
     }
@@ -54,6 +59,19 @@ public class WaveManager : MonoBehaviour
         return spawns;
     }
 
+    List<GameObject> GetEnemiesToSpawn()
+    {
+        List<GameObject> enemiesToSpawn = new List<GameObject>();
+        if (Enemy1 != null)
+            enemiesToSpawn.Add(Enemy1);
+        if (Enemy2 != null)
+            enemiesToSpawn.Add(Enemy2);
+        if (Enemy3 != null)
+            enemiesToSpawn.Add(Enemy3);
+        return enemiesToSpawn;
+
+    }
+
     public void StartFirstWave()
     {
         waveText.enabled = true;
@@ -67,8 +85,9 @@ public class WaveManager : MonoBehaviour
         MoveWaveCounterToCenter();
         Invoke("MoveWaveCounterToBottomRight", 3);
         waveText.text = "Wave " + currentWave;
-        totalEnemiesThisWave += 5;
         enemiesSpawnedThisWave = 0;
+        if (currentWave != 1)
+            totalEnemiesThisWave += 5;
         if (timeBetweenSpawns >= 1.0f)
             timeBetweenSpawns -= 0.1f;
         StartSpawning();
@@ -78,9 +97,9 @@ public class WaveManager : MonoBehaviour
     {
         finishedSpawning = false;
         if(currentWave == 1)
-            InvokeRepeating("SpawnEnemy", 1, timeBetweenSpawns);
+            InvokeRepeating("SpawnEnemy", 0, timeBetweenSpawns);
         else
-            InvokeRepeating("SpawnEnemy", 5, timeBetweenSpawns);
+            InvokeRepeating("SpawnEnemy", timeBetweenWaves, timeBetweenSpawns);
     }
 
     public void StopSpawning()
@@ -92,7 +111,8 @@ public class WaveManager : MonoBehaviour
     public void SpawnEnemy()
     {
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
-        Instantiate(baseEnemy, spawnPoint.position, spawnPoint.rotation);
+        GameObject enemy = enemies[Random.Range(0, enemies.Count)];
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         enemiesSpawnedThisWave++;
     }
 

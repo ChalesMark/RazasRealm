@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class BaddieController : MonoBehaviour, IEnemyController
 {
-    private GameObject player;
+    
     public GameObject blood;
+    public TextMeshPro damageNumbers;
     public int killGold;
-    private Vector3 target;
-    private bool playerSpotted;
-    private float distanceToTarget;
+    
 
     [Header("Movement AI Settings:")]
     [Tooltip("Max distance an enemy can roam in any direction from it's spawm")]
@@ -26,7 +26,18 @@ public class BaddieController : MonoBehaviour, IEnemyController
     [Range(0.0f, 10.0f)]
     public int Speed = 1;
 
-    Animator animator;
+    [Header("Attack Settings:")]
+    [Range(0.0f, 10.0f)]
+    public float AttackCooldownTime = 3;
+    [Range(0.0f, 50.0f)]
+    public int Damage = 1;
+
+    private GameObject player;
+    private Animator animator;
+    private Vector3 target;
+    private float distanceToTarget;
+    private bool playerSpotted;
+    private bool attackOnCooldown = false;
 
     //Roam boundary square
     private float roamXBottom;
@@ -121,13 +132,35 @@ public class BaddieController : MonoBehaviour, IEnemyController
             GetRandomTarget();
     }
 
-    private void OnCollisionStay(Collision coll)
+    private void OnTriggerStay(Collider other)
     {
-        if (coll.gameObject.tag != "Player"  && !playerSpotted)
-            GetRandomTarget();
-        else if(coll.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Wall" && !playerSpotted)
         {
-            //Damage player
+            //temporary workaround: on contact with walls redirect to center of arena
+            //someone pls implement proper collision lol
+            target = new Vector3(5, transform.position.y, -5);
+            transform.LookAt(target);
         }
+        if (other.gameObject.tag == "Player" && !attackOnCooldown)
+        {
+            other.gameObject.GetComponent<HealthController>().DecreaseCurrentHealth(Damage);
+            damageNumbers.text = Damage.ToString();
+            Instantiate(damageNumbers, transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Quaternion.LookRotation(Camera.main.transform.position - transform.position));
+            AttackCooldown();
+        }
+        
     }
+
+    private void AttackCooldown()
+    {
+        attackOnCooldown = true;
+        Invoke("AttackOffCooldown", AttackCooldownTime);
+
+    }
+
+    private void AttackOffCooldown()
+    {
+        attackOnCooldown = false;
+    }
+    
 }

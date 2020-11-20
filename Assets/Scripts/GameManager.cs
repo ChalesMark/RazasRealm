@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
             player.transform.position = Vector3.zero;
         }
 
+        
         dresserRotate.onValueChanged.AddListener(delegate { player.transform.rotation = Quaternion.Euler(0, -dresserRotate.value, 0); });
     }
 

@@ -666,10 +666,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6503292966125130839}
-  - component: {fileID: 9137717678930709813}
   - component: {fileID: 4329873730295890525}
-  - component: {fileID: -1510750753733085471}
   - component: {fileID: 6584875699911819335}
+  - component: {fileID: 9137717678930709813}
+  - component: {fileID: -1510750753733085471}
   - component: {fileID: 4595827232748507550}
   m_Layer: 0
   m_Name: Phant
@@ -694,6 +694,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 89.83, z: 0}
+--- !u!114 &4329873730295890525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839909585676078829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a36d1623be343141afabef691ae40e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood: {fileID: 7137356873325856154, guid: 3aa4a8c67cdf3244d98cc9768b974c04, type: 3}
+  damageNumbers: {fileID: 4362682648724695287, guid: f26ffdb970e2657459fab45e5f05da33,
+    type: 3}
+  killGold: 1
+  RoamDistance: 50
+  AggroRange: 40
+  IgnoreDistance: 70
+  Speed: 4
+  AttackCooldownTime: 5
+  Damage: 20
+--- !u!114 &6584875699911819335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839909585676078829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4a5073b2ea20e468bb6392fad3ffbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  enemyHealthScaling: 50
+  currHealth: 0
+  dead: 0
 --- !u!95 &9137717678930709813
 Animator:
   serializedVersion: 3
@@ -713,24 +751,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4329873730295890525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5839909585676078829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a36d1623be343141afabef691ae40e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blood: {fileID: 7137356873325856154, guid: 3aa4a8c67cdf3244d98cc9768b974c04, type: 3}
-  killGold: 1
-  RoamDistance: 50
-  AggroRange: 40
-  IgnoreDistance: 100
-  Speed: 4
 --- !u!65 &-1510750753733085471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -739,26 +759,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5839909585676078829}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.587391, y: 3.8129716, z: 3.966577}
   m_Center: {x: 0.10909761, y: 1.4064858, z: 0.62844324}
---- !u!114 &6584875699911819335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5839909585676078829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f4a5073b2ea20e468bb6392fad3ffbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currHealth: 0
-  enemyHealthScaling: 20
 --- !u!143 &4595827232748507550
 CharacterController:
   m_ObjectHideFlags: 0

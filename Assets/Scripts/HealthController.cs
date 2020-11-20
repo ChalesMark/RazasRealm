@@ -1,32 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
 
     // Start is called before the first frame update
     public int maxHealth;
-    public int currHealth;
     public int enemyHealthScaling;
-    bool dead = false;
+    //[HideInInspector]
+    public  int currHealth;
+    [HideInInspector]
+    public bool dead = false;
+    private bool invincible = false;
+
+
+    private Slider healthBar;
 
     private void Start()
     {
-        if(gameObject.tag == "Enemy")
+        currHealth = maxHealth;
+        if (gameObject.tag == "Enemy")
         {
             maxHealth += enemyHealthScaling * GameObject.Find("WaveManager").GetComponent<WaveManager>().GetCurrentWave();
         }
-        currHealth = maxHealth;
+        else if (gameObject.tag == "Player")
+        {
+            healthBar = Camera.main.transform.Find("Canvas").Find("PlayerHealth").GetComponent<Slider>();
+            healthBar.maxValue = maxHealth;
+            healthBar.value = currHealth;
+        }
+    }
+
+    private void Update()
+    {
+        healthBar.value = currHealth;
     }
 
 
     public void DecreaseCurrentHealth(int damage) {
         currHealth -= damage;
-        if(currHealth < 0 && !dead) {
+        if(currHealth <= 0 && !dead) {
             currHealth = 0;
+            healthBar.value = 0;
             Kill();
-        }   
+        }
     }
 
     public void Heal(int health) {
@@ -49,6 +68,4 @@ public class HealthController : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-    
 }
