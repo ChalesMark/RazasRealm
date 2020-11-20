@@ -15,7 +15,6 @@ public class GearController : MonoBehaviour
         }
         set
         {
-            print("SETTING");
             weapon = value;
             weapon.enabled = true;      
         }

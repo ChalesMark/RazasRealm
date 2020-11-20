@@ -12,6 +12,6 @@ public class CoinController : MonoBehaviour, IInteractable
     public void Interact(InteractController interactController)
     {
         interactController.InteractableConsumed(gameObject);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

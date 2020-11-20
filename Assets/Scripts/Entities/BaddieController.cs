@@ -20,7 +20,7 @@ public class BaddieController : MonoBehaviour, IEnemyController
     [Range(0.0f, 40.0f)]
     public int AggroRange = 10;
     [Tooltip("Distance the player must be from the enemy to resume free roam")]
-    [Range(0.0f, 40.0f)]
+    [Range(0.0f, 100.0f)]
     public int IgnoreDistance = 20;
     [Tooltip("Speed the enemy travels")]
     [Range(0.0f, 10.0f)]
@@ -46,7 +46,7 @@ public class BaddieController : MonoBehaviour, IEnemyController
         roamZTop = transform.position.z + RoamDistance;
 
         animator = GetComponent<Animator>();
-        animator.SetBool("Moving",true);
+        animator.SetBool("walk",true);
         playerSpotted = false;
         GetRandomTarget();
     }
@@ -63,12 +63,12 @@ public class BaddieController : MonoBehaviour, IEnemyController
 
         if (playerSpotted)
         {
-            animator.SetFloat("AgroBlend", 0f);
+            //animator.SetFloat("AgroBlend", 0f);
             FollowPlayer();
         }
         else
         {
-            animator.SetFloat("AgroBlend", 1f);
+            //animator.SetFloat("AgroBlend", 1f);
             Roam();
         }
 
@@ -119,5 +119,15 @@ public class BaddieController : MonoBehaviour, IEnemyController
     {
         if (distanceToTarget < 3)
             GetRandomTarget();
+    }
+
+    private void OnCollisionStay(Collision coll)
+    {
+        if (coll.gameObject.tag != "Player"  && !playerSpotted)
+            GetRandomTarget();
+        else if(coll.gameObject.tag == "Player")
+        {
+            //Damage player
+        }
     }
 }

@@ -30,7 +30,7 @@ public class ShopItem : MonoBehaviour, IBuyable, IPickable
     public void Pickup(GearController controller) {
         if(permanentStock) 
         {
-            GameObject shopItem = Instantiate(gameObject);
+            GameObject shopItem = Instantiate(gameObject, gameObject.transform.parent);
             shopItem.name = gameObject.name;
         }
 

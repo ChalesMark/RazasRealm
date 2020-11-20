@@ -27,5 +27,7 @@ namespace Assets.Scripts.Entities
             if (internalPS)
                 internalPS.transform.position = this.transform.position;
         }
+
+
     }
 }

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class InteractController : MonoBehaviour
 {
-    private Text buyText;
+    private Text interactText;
     private bool checkForInput;
     private IInteractable interactable;
 
     void Start() {
-        buyText = Camera.main.transform.Find("Canvas").Find("BuyText").GetComponent<Text>();
-        buyText.enabled = false;
+        interactText = Camera.main.transform.Find("Canvas").Find("InteractText").GetComponent<Text>();
+        interactText.enabled = false;
     }
 
     void Update() {
@@ -25,16 +25,15 @@ public class InteractController : MonoBehaviour
     {
         if(other.GetComponent<IInteractable>() != null) {
             interactable = other.GetComponent<IInteractable>();
-            buyText.enabled = true;
-            buyText.text = interactable.GetInteractText();
-            print(buyText.text);
+            interactText.enabled = true;
+            interactText.text = interactable.GetInteractText();
             checkForInput = true;
         }
     }
 
     void OnTriggerExit(Collider other) 
     {
-        buyText.enabled = false;
+        interactText.enabled = false;
         interactable = null;
         checkForInput = false;
     }
@@ -46,6 +45,11 @@ public class InteractController : MonoBehaviour
     public void InteractableConsumed(GameObject other)
     {
         OnTriggerExit(other.GetComponent<Collider>());
+    }
+    
+    public void RefreshText(GameObject other)
+    {
+        interactText.text = other.GetComponent<IInteractable>().GetInteractText();
     }
 
 

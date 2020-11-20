@@ -6,12 +6,17 @@ public class HealthController : MonoBehaviour
 {
 
     // Start is called before the first frame update
-    public int maxHealth = 100;
+    public int maxHealth;
     public int currHealth;
+    public int enemyHealthScaling;
     bool dead = false;
 
     private void Start()
     {
+        if(gameObject.tag == "Enemy")
+        {
+            maxHealth += enemyHealthScaling * GameObject.Find("WaveManager").GetComponent<WaveManager>().GetCurrentWave();
+        }
         currHealth = maxHealth;
     }
 
