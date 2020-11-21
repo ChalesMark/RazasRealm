@@ -59,13 +59,14 @@ public class GameManager : MonoBehaviour
             LoadScene("Hub","main");
         else
         {
-            player = Instantiate(playerPrefab);
+            Vector3 mainSP = GameObject.Find("SpawnPoint").transform.position;
+
+            player = Instantiate(playerPrefab, mainSP == null ? Vector3.zero : mainSP, Quaternion.identity, null);
             Camera.main.GetComponent<CameraController>().SetTarget(player);
-            player.transform.position = Vector3.zero;
         }
 
-        
-        dresserRotate.onValueChanged.AddListener(delegate { player.transform.rotation = Quaternion.Euler(0, -dresserRotate.value, 0); });
+        if (dresserRotate)
+            dresserRotate.onValueChanged.AddListener(delegate { player.transform.rotation = Quaternion.Euler(0, -dresserRotate.value, 0); });
     }
 
     // LoadScene

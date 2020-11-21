@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
         {
             if (!specialLook)
             {
-                this.transform.rotation = Quaternion.Euler(50, 0, 0);
+                this.transform.rotation = Quaternion.Euler(50, 0, 0);               
                 this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);
             }
             else

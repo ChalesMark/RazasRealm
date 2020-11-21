@@ -35,7 +35,8 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        healthBar.value = currHealth;
+        if (healthBar)
+            healthBar.value = currHealth;
     }
 
 

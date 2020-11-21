@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BaddieController : MonoBehaviour, IEnemyController
 {
@@ -10,7 +11,7 @@ public class BaddieController : MonoBehaviour, IEnemyController
     public GameObject blood;
     public TextMeshPro damageNumbers;
     public int killGold;
-    
+    NavMeshAgent agent;
 
     [Header("Movement AI Settings:")]
     [Tooltip("Max distance an enemy can roam in any direction from it's spawm")]
@@ -47,17 +48,29 @@ public class BaddieController : MonoBehaviour, IEnemyController
 
     private CharacterController characterController;
 
+    [Header("This toggle makes the enemy always ignore the player (mainly for testing purposes)")]
+    public bool blind;
+
     int IEnemyController.KillGold { get { return killGold; } }
     bool IEnemyController.PlayerSpotted { get { return playerSpotted; } }
 
 
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
-        roamXBottom = transform.position.x - RoamDistance;
-        roamXTop = transform.position.x + RoamDistance;
-        roamZBottom = transform.position.z - RoamDistance;
-        roamZTop = transform.position.z + RoamDistance;
+        agent = GetComponent<NavMeshAgent>();
+
+        if (!agent)
+        {
+            characterController = GetComponent<CharacterController>();
+            roamXBottom = transform.position.x - RoamDistance;
+            roamXTop = transform.position.x + RoamDistance;
+            roamZBottom = transform.position.z - RoamDistance;
+            roamZTop = transform.position.z + RoamDistance;
+        }
+        else
+        {
+            agent.speed = this.Speed;
+        }
 
         animator = GetComponent<Animator>();
         animator.SetBool("walk",true);
@@ -75,18 +88,29 @@ public class BaddieController : MonoBehaviour, IEnemyController
 
         ScanForPlayer();
 
-        if (playerSpotted)
+        if (agent)
         {
-            //animator.SetFloat("AgroBlend", 0f);
-            FollowPlayer();
+            if (!blind && playerSpotted)
+                NavToPlayer();
+            else
+                NavRoam();
         }
         else
         {
-            //animator.SetFloat("AgroBlend", 1f);
-            Roam();
+            if (playerSpotted)
+            {
+                //animator.SetFloat("AgroBlend", 0f);
+                FollowPlayer();
+            }
+            else
+            {
+                //animator.SetFloat("AgroBlend", 1f);
+                Roam();
+            }
+            MoveForward();
         }
 
-        MoveForward();
+        
     }
 
     public void Bleed()
@@ -101,6 +125,15 @@ public class BaddieController : MonoBehaviour, IEnemyController
                              transform.position.y, 
                              Random.Range(roamZBottom, roamZTop));
         transform.LookAt(target);
+    }
+
+    void NavGetRandomTarget()
+    {
+        do {
+            target = new Vector3(Random.Range(roamXBottom, roamXTop),
+                                 transform.position.y,
+                                 Random.Range(roamZBottom, roamZTop));
+        } while (agent.CalculatePath(target, new NavMeshPath()));
     }
 
     void MoveForward()
@@ -130,6 +163,27 @@ public class BaddieController : MonoBehaviour, IEnemyController
             GetRandomTarget();
         }
     }
+
+    void NavToPlayer()
+    {
+        if ((player.transform.position - this.transform.position).magnitude < IgnoreDistance)
+        {
+            agent.destination = player.transform.position;
+        }
+        else
+        {
+            playerSpotted = false;
+            GetRandomTarget();
+        }
+    }
+
+    public void NavRoam()
+    {
+        agent.destination = target;
+        if (distanceToTarget < 3)
+            NavGetRandomTarget();
+    }
+
     public void Roam()
     {
         if (distanceToTarget < 3)

@@ -16,7 +16,8 @@ public class BulletCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {      
         if (other.tag == "Enemy")
-        {   
+        {
+            print("Owie :c");
             damageNumbers.text = damageController.Damage(other.GetComponent<HealthController>()).ToString();
             Instantiate(damageNumbers, transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Quaternion.LookRotation(Camera.main.transform.position - transform.position));
             other.GetComponent<BaddieController>().Bleed();

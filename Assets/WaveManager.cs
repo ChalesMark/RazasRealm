@@ -53,6 +53,7 @@ public class WaveManager : MonoBehaviour
     {
         List<Transform> spawns = new List<Transform>();
         GameObject spawnGroup = GameObject.Find("EnemySpawns");
+        if (spawnGroup)
         foreach (Transform spawn in spawnGroup.transform)
             spawns.Add(spawn);
 
