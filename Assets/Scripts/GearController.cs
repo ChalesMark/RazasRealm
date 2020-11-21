@@ -18,6 +18,7 @@ public class GearController : MonoBehaviour
             weapon = value;
             weapon.transform.parent = gameObject.transform;    
             weapon.GetComponent<BoxCollider>().enabled = false;
+            weapon.PlayerAnimator = GetComponent<Animator>();
             weapon.enabled = true;  
         }
     }

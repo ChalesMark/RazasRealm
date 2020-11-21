@@ -6,16 +6,16 @@ public class RangedSpecial : MonoBehaviour, ISpecialAttack
 { 
 
 
-    public void RunWeaponComponent() 
+    public void RunWeaponComponent(Animator animator) 
     {
         if(Input.GetKeyDown(KeyCode.Mouse1)) 
         {
-            InvokeSpecial();
+            InvokeSpecial(animator);
         }
     }
     
 
-    public void InvokeSpecial() 
+    public void InvokeSpecial(Animator animator) 
     {
         print("idfk lmfao");
     }

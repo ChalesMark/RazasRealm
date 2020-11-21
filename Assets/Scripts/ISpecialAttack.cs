@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ISpecialAttack: IWeaponComponent
 {
-    void InvokeSpecial();
+    void InvokeSpecial(Animator animtor);
 }
