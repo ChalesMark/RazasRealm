@@ -45,12 +45,15 @@ public class BaddieController : MonoBehaviour, IEnemyController
     private float roamZBottom;
     private float roamZTop;
 
+    private CharacterController characterController;
+
     int IEnemyController.KillGold { get { return killGold; } }
     bool IEnemyController.PlayerSpotted { get { return playerSpotted; } }
 
 
     private void Start()
     {
+        characterController = GetComponent<CharacterController>();
         roamXBottom = transform.position.x - RoamDistance;
         roamXTop = transform.position.x + RoamDistance;
         roamZBottom = transform.position.z - RoamDistance;
@@ -102,7 +105,8 @@ public class BaddieController : MonoBehaviour, IEnemyController
 
     void MoveForward()
     {
-        transform.position += transform.TransformDirection(Vector3.forward) * Speed * Time.deltaTime;
+        //transform.position += transform.TransformDirection(Vector3.forward) * Speed * Time.deltaTime;
+        characterController.Move(transform.forward * Speed * Time.deltaTime);
     }
 
     void ScanForPlayer()
@@ -134,13 +138,6 @@ public class BaddieController : MonoBehaviour, IEnemyController
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Wall" && !playerSpotted)
-        {
-            //temporary workaround: on contact with walls redirect to center of arena
-            //someone pls implement proper collision lol
-            target = new Vector3(5, transform.position.y, -5);
-            transform.LookAt(target);
-        }
         if (other.gameObject.tag == "Player" && !attackOnCooldown)
         {
             other.gameObject.GetComponent<HealthController>().DecreaseCurrentHealth(Damage);
