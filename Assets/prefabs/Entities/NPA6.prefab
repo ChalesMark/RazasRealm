@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1a6a16f4c7e6f4d9c08456f46add91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: -3298001274245007803, guid: 5b2ce4a25aff0da43941042edae63b02, type: 3}
+  weapon: {fileID: 8245736201428637291, guid: 5b2ce4a25aff0da43941042edae63b02, type: 3}
   hat: {fileID: 5922920252131738943, guid: ef2a63da3f153c742aabc25f0e4c3a5a, type: 3}
   gunBone: {fileID: 4143532483804306965}
   hatBone: {fileID: 7683795563985219877}

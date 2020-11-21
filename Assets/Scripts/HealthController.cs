@@ -43,7 +43,7 @@ public class HealthController : MonoBehaviour
         currHealth -= damage;
         if(currHealth <= 0 && !dead) {
             currHealth = 0;
-            healthBar.value = 0;
+            //healthBar.value = 0;
             Kill();
         }
     }

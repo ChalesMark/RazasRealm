@@ -16,7 +16,9 @@ public class GearController : MonoBehaviour
         set
         {
             weapon = value;
-            weapon.enabled = true;      
+            weapon.transform.parent = gameObject.transform;    
+            weapon.GetComponent<BoxCollider>().enabled = false;
+            weapon.enabled = true;  
         }
     }
 
@@ -32,11 +34,6 @@ public class GearController : MonoBehaviour
     }
 
     void Update() {
-
-        if(weapon.transform.parent == null) {
-            weapon.transform.parent = gameObject.transform;
-        }
-
         /*
         if(hat.transform.parent == null) {
             hat.transform.parent = gameObject.transform;

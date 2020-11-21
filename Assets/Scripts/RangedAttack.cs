@@ -22,12 +22,22 @@ public class RangedAttack : MonoBehaviour, IAttackable
     private int projectileSpeed;
     [SerializeField]
     private float projectileLifeSpan;
+    [SerializeField]
+    private ShootType shootType;
 
+    private Animator animator;
 
     private bool onCooldown = false;
 
+    public enum ShootType { Normal, MachineGun, Steady, Big};
+
     public void RunWeaponComponent() 
     {
+        //MIGHT WANT TO MOVE THIS INTO WEAPONSCRIPT
+        if(animator == null) {
+            animator = GetComponentInParent<Animator>();
+        }
+
         if (onCooldown)
             return;
         else if (automatic && Input.GetKey(KeyCode.Mouse0))
@@ -45,6 +55,8 @@ public class RangedAttack : MonoBehaviour, IAttackable
 
     public void Attack()
     {
+        animator.SetInteger("shootType", (int)System.Enum.Parse(typeof(ShootType), shootType.ToString()));
+        animator.SetTrigger("shoot");
         projectile.GetComponent<DamageController>().BaseDamage = baseDamage;
         projectile.GetComponent<BulletSpeedController>().Speed = projectileSpeed;
         projectile.GetComponent<LifeSpanController>().Lifespan = projectileLifeSpan;
@@ -53,7 +65,6 @@ public class RangedAttack : MonoBehaviour, IAttackable
 
         onCooldown = true;
         StartCoroutine(CooldownCoroutine(automatic ? autofireRate : manualfireCooldown));
-
         print(gameObject.name + " shot a " + projectile.name + "\nDamage: " + baseDamage + "\nSpeed: " + projectileSpeed + "\nLifespan: " + projectileLifeSpan);
     }
 

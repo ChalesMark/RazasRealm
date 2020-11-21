@@ -50,6 +50,15 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         MouseLook();
         RayTraceInteract();
+
+        if (animator.GetCurrentAnimatorStateInfo(1).IsName("player_armature|null"))
+        {
+            animator.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 1);
+        }
     }
 
     private void FixedUpdate()
@@ -120,6 +129,6 @@ public class PlayerController : MonoBehaviour
 
     internal void DisableGun(bool disable)
     {
-        gearController.weapon.canShoot = disable;
+        gearController.weapon.enabled = !disable;
     }
 }
