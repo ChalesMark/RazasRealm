@@ -25,25 +25,18 @@ public class RangedAttack : MonoBehaviour, IAttackable
     [SerializeField]
     private ShootType shootType;
 
-    private Animator animator;
-
     private bool onCooldown = false;
 
     public enum ShootType { Normal, MachineGun, Steady, Big};
 
-    public void RunWeaponComponent() 
+    public void RunWeaponComponent(Animator animator) 
     {
-        //MIGHT WANT TO MOVE THIS INTO WEAPONSCRIPT
-        if(animator == null) {
-            animator = GetComponentInParent<Animator>();
-        }
-
         if (onCooldown)
             return;
-        else if (automatic && Input.GetKey(KeyCode.Mouse0))
-            Attack();
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
-            Attack();
+        else if (automatic && Input.GetKey(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack(animator);
+        }
         //for testing
         else if (Input.GetKeyDown(KeyCode.Q))
             projectileCount++;
@@ -52,11 +45,12 @@ public class RangedAttack : MonoBehaviour, IAttackable
 
     }
 
-
-    public void Attack()
+    public void Attack(Animator animator)
     {
+
         animator.SetInteger("shootType", (int)System.Enum.Parse(typeof(ShootType), shootType.ToString()));
         animator.SetTrigger("shoot");
+        
         projectile.GetComponent<DamageController>().BaseDamage = baseDamage;
         projectile.GetComponent<BulletSpeedController>().Speed = projectileSpeed;
         projectile.GetComponent<LifeSpanController>().Lifespan = projectileLifeSpan;

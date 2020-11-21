@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttackable: IWeaponComponent
 {
-    void Attack();
+    void Attack(Animator animator);
 } 
