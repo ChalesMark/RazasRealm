@@ -59,9 +59,14 @@ public class GameManager : MonoBehaviour
             LoadScene("Hub","main");
         else
         {
-            Vector3 mainSP = GameObject.Find("SpawnPoint").transform.position;
+            Vector3 mainSP;
+            if (GameObject.Find("SpawnPoint"))
+                mainSP = GameObject.Find("SpawnPoint").transform.position;
+            else
+                mainSP = Vector3.zero;
 
-            player = Instantiate(playerPrefab, mainSP == null ? Vector3.zero : mainSP, Quaternion.identity, null);
+
+            player = Instantiate(playerPrefab, mainSP, Quaternion.identity, null);
             Camera.main.GetComponent<CameraController>().SetTarget(player);
         }
 
