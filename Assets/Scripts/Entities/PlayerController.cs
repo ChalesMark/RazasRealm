@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         MouseLook();
-        RayTraceInteract();
+        //RayTraceInteract();
 
         if (animator.GetCurrentAnimatorStateInfo(1).IsName("player_armature|null"))
         {
@@ -93,7 +93,8 @@ public class PlayerController : MonoBehaviour
     public void LockMovement(bool lockMove) {
         lockMovement = lockMove;
     }
-
+    
+    /*
     // DO NOT DELETE THIS
     private void RayTraceInteract()
     {
@@ -121,6 +122,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
 
     internal void StopAnimation()
     {
@@ -129,6 +131,6 @@ public class PlayerController : MonoBehaviour
 
     internal void DisableGun(bool disable)
     {
-        gearController.weapon.enabled = !disable;
+        gearController.weapon.enabled = disable;
     }
 }

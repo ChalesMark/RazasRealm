@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CustomizationStation : MonoBehaviour, MarksIInteractable
+public class CustomizationStation : MonoBehaviour, IInteractable
 {
     GameManager gameManager;
     CameraController cameraController;
@@ -57,7 +57,7 @@ public class CustomizationStation : MonoBehaviour, MarksIInteractable
         gameManager.ReturnControl();
     }
 
-    public void Interact()
+    public void Interact(InteractController controller)
     {        
         cameraController.ChangeSpecialLook(specialCamera.transform);
         cameraController.customizationMenu.SetActive(true);
@@ -68,5 +68,9 @@ public class CustomizationStation : MonoBehaviour, MarksIInteractable
     private void GivePlayerHat()
     {
         gameManager.GivePlayerHat(hats[currentHat]);
+    }
+
+    public string GetInteractText() {
+        return "Press Interact to use Station";
     }
 }

@@ -9,7 +9,6 @@ public class MeleeAttack : MonoBehaviour, IAttackable
     public void RunWeaponComponent(Animator animator) 
     {
         if (Input.GetKeyDown(KeyCode.Mouse0)) 
-
             Attack(animator);
     }
 

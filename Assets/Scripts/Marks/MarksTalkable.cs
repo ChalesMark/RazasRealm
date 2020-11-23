@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarksTalkable : MonoBehaviour, MarksIInteractable
+public class MarksTalkable : MonoBehaviour, IInteractable
 {
     public string[] text;
     public string speaker;
@@ -15,8 +15,12 @@ public class MarksTalkable : MonoBehaviour, MarksIInteractable
         cameraController = Camera.main.GetComponent<CameraController>();
     }
 
-    public void Interact()
+    public void Interact(InteractController controller)
     {
         cameraController.ShowMessage(text, speaker, readTime, !showChatBox);
+    }
+
+    public string GetInteractText() {
+        return "Press Interact to Read Sign";
     }
 }
