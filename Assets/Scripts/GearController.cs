@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GearController : MonoBehaviour
 {
+    public WeaponScript StartingGun;
     public WeaponScript weapon;
     
     private WeaponScript Weapon
@@ -22,7 +23,6 @@ public class GearController : MonoBehaviour
             weapon.enabled = true;  
         }
     }
-
     public GameObject hat;
 
     public Transform gunBone;
@@ -31,7 +31,7 @@ public class GearController : MonoBehaviour
 
     void Start() {
         hat = Instantiate(hat);
-        Weapon = Instantiate(weapon);
+        Weapon = Instantiate(StartingGun);
     }
 
     void Update() {
@@ -48,6 +48,11 @@ public class GearController : MonoBehaviour
         hat.transform.rotation = hatBone.rotation;
     }
 
+    public void ReturnToDefaultGun()
+    {
+        Destroy(Weapon.gameObject);
+        Weapon = Instantiate(StartingGun);
+    }
 
     public void SwitchWeapon(WeaponScript newWeapon) {
         Destroy(Weapon.gameObject);

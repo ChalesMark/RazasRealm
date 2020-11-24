@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 5230981741925860946}
   - component: {fileID: 8289097179775944930}
   - component: {fileID: 296568137823868134}
+  - component: {fileID: 1845130042963989396}
   m_Layer: 0
   m_Name: Lizard_Nav
   m_TagString: Enemy
@@ -889,6 +890,24 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!143 &1845130042963989396
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925046815399000837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 1
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5206585770194573667
 GameObject:
