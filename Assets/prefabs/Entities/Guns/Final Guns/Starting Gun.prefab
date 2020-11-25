@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 862743728773881635}
   - component: {fileID: 862743728773881634}
   - component: {fileID: 6278959226698981858}
-  - component: {fileID: 862743728773881633}
   - component: {fileID: 8245736201428637291}
+  - component: {fileID: 2884180870801942405}
   m_Layer: 0
   m_Name: Starting Gun
   m_TagString: Untagged
@@ -84,24 +84,12 @@ MonoBehaviour:
   autofireRate: 0.3
   automatic: 0
   manualfireCooldown: 0.1
-  baseDamage: 10
   projectileSpeed: 40
   projectileLifeSpan: 0.5
   shootType: 0
   ammoLeft: 0
   maxAmmo: 0
---- !u!114 &862743728773881633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862743728773881638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102fe09c1bd58d749bbbe6d185564c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  baseDamage: 10
 --- !u!114 &8245736201428637291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +102,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6d1c65a4c9f5a4f8bcc7c1d730bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+--- !u!114 &2884180870801942405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862743728773881638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102fe09c1bd58d749bbbe6d185564c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFOV: 50
+  speed: 150
+  slowSpeed: 7
+  damageBuff: 10
 --- !u!1 &862743729403776145
 GameObject:
   m_ObjectHideFlags: 0

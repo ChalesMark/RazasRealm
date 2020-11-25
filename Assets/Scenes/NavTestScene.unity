@@ -1694,11 +1694,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185328824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a6d1c65a4c9f5a4f8bcc7c1d730bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
 --- !u!114 &185328826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1711,6 +1712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102fe09c1bd58d749bbbe6d185564c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetFOV: 50
+  slowSpeed: 7
+  percentageBoost: 20
 --- !u!114 &185328827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1730,12 +1734,12 @@ MonoBehaviour:
   autofireRate: 0.3
   automatic: 0
   manualfireCooldown: 0
-  baseDamage: 200
   projectileSpeed: 0
   projectileLifeSpan: 0
   shootType: 3
   ammoLeft: 0
   maxAmmo: 203
+  baseDamage: 200
 --- !u!4 &185328828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6360481299532039804, guid: c8ae2ca89bb35e04da8a102a5f010f46,
@@ -8258,11 +8262,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016591565}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a6d1c65a4c9f5a4f8bcc7c1d730bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
 --- !u!114 &1016591567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8275,6 +8280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102fe09c1bd58d749bbbe6d185564c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetFOV: 50
+  slowSpeed: 7
+  percentageBoost: 20
 --- !u!114 &1016591568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8294,12 +8302,12 @@ MonoBehaviour:
   autofireRate: 0
   automatic: 0
   manualfireCooldown: 0
-  baseDamage: 0
   projectileSpeed: 0
   projectileLifeSpan: 0
   shootType: 0
   ammoLeft: 0
   maxAmmo: 0
+  baseDamage: 0
 --- !u!114 &1016591570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10519,6 +10527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6d1c65a4c9f5a4f8bcc7c1d730bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
 --- !u!114 &1361427158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10531,6 +10540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102fe09c1bd58d749bbbe6d185564c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetFOV: 50
+  slowSpeed: 7
+  percentageBoost: 20
 --- !u!114 &1361427159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10551,12 +10563,12 @@ MonoBehaviour:
   autofireRate: 0.2
   automatic: 1
   manualfireCooldown: 0.1
-  baseDamage: 10
   projectileSpeed: 40
   projectileLifeSpan: 0.5
   shootType: 0
   ammoLeft: 0
   maxAmmo: 100
+  baseDamage: 10
 --- !u!4 &1361427160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5440941811102134125, guid: 32f15998fceffe446a72e80a94adac86,
@@ -17528,6 +17540,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4540469449908763180, guid: c4b51e87262699246a466a81089396cc,
+        type: 3}
+      propertyPath: targetFOV
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540469449908763180, guid: c4b51e87262699246a466a81089396cc,
+        type: 3}
+      propertyPath: slowSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4540469449908763181, guid: c4b51e87262699246a466a81089396cc,
         type: 3}
       propertyPath: baseDamage
@@ -17607,6 +17629,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6583696556472054299, guid: e96e899dcb7d5d2418ff22982ae1e1f4,
+        type: 3}
+      propertyPath: targetFOV
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583696556472054299, guid: e96e899dcb7d5d2418ff22982ae1e1f4,
+        type: 3}
+      propertyPath: slowSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8280978330428901794, guid: e96e899dcb7d5d2418ff22982ae1e1f4,
         type: 3}
       propertyPath: m_LocalPosition.x

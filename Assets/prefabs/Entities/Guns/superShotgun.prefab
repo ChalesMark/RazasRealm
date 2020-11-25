@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 8503941155314223976}
   - component: {fileID: 5594284467756784208}
   - component: {fileID: 8325412340685987028}
+  - component: {fileID: -7815839912008816446}
   m_Layer: 0
   m_Name: superShotgun
   m_TagString: Untagged
@@ -198,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46cab9f6c6db14c4c978f004c2a5ab9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunName: 
   projectile: {fileID: 1309111246164075521, guid: 6738d269e05fd1b44afd89abc574b3c2,
     type: 3}
   projectileCount: 5
@@ -209,3 +211,19 @@ MonoBehaviour:
   projectileSpeed: 50
   projectileLifeSpan: 0.2
   shootType: 3
+  ammoLeft: 0
+  maxAmmo: 0
+--- !u!114 &-7815839912008816446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846609797642895886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102fe09c1bd58d749bbbe6d185564c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFOV: 0.1
+  speed: 1

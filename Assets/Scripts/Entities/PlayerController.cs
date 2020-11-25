@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;    // The controller for handling collison and movment
     GearController gearController;
-    Animator animator;
+    public Animator animator{get;set;}
 
     //Stores Movement in Update and applies in FixedUpdate (This is how it should be done for physics based movement)
     private Vector3 movement;

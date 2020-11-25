@@ -6,16 +6,16 @@ public class MeleeAttack : MonoBehaviour, IAttackable
 {
 
     // Start is called before the first frame update
-    public void RunWeaponComponent(Animator animator) 
+    public void RunWeaponComponent(PlayerController controller) 
     {
         if (Input.GetKeyDown(KeyCode.Mouse0)) 
-            Attack(animator);
+            Attack(controller);
     }
 
 
-    public void Attack(Animator animator)
+    public void Attack(PlayerController controller)
     {
-        animator.SetTrigger("slash");
+        controller.animator.SetTrigger("slash");
     }
 
 }

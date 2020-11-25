@@ -5,11 +5,11 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     public IWeaponComponent[] weaponComponents;
-    public Animator PlayerAnimator{get;set;}
+    public PlayerController playerController;
 
     private void OnEnable() {
         weaponComponents = GetComponents<IWeaponComponent>();
-        PlayerAnimator = GetComponentInParent<Animator>();
+        playerController = GetComponentInParent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -17,7 +17,7 @@ public class WeaponScript : MonoBehaviour
     {   
             foreach(IWeaponComponent component in weaponComponents) 
             {
-                component.RunWeaponComponent(PlayerAnimator);
+                component.RunWeaponComponent(playerController);
             }
     }
 }

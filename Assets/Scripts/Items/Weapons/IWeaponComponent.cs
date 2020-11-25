@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IWeaponComponent{
 
-    void RunWeaponComponent(Animator animator);
+    void RunWeaponComponent(PlayerController controller);
 } 

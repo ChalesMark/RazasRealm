@@ -20,8 +20,6 @@ public class RangedAttack : MonoBehaviour, IAttackable
     [SerializeField]
     private float manualfireCooldown;
     [SerializeField]
-    private int baseDamage;
-    [SerializeField]
     private int projectileSpeed;
     [SerializeField]
     private float projectileLifeSpan;
@@ -31,6 +29,8 @@ public class RangedAttack : MonoBehaviour, IAttackable
     private int ammoLeft;
     [SerializeField]
     public int maxAmmo;
+
+    public int baseDamage;
 
     CameraController cameraController;
 
@@ -45,7 +45,7 @@ public class RangedAttack : MonoBehaviour, IAttackable
         cameraController.SetAmmoText(ammoLeft, maxAmmo);
     }
 
-    public void RunWeaponComponent(Animator animator) 
+    public void RunWeaponComponent(PlayerController controller) 
     {
         if (onCooldown)
             return;
@@ -54,23 +54,17 @@ public class RangedAttack : MonoBehaviour, IAttackable
             if (maxAmmo == 0)
             {
                 cameraController.SetAmmoText(ammoLeft, maxAmmo);
-                Attack(animator);
+                Attack(controller);
             }
             else if (ammoLeft > 0)
             {
                 ammoLeft--;
                 cameraController.SetAmmoText(ammoLeft,maxAmmo);
-                Attack(animator);
+                Attack(controller);
                 if (ammoLeft <= 0)
-                    animator.gameObject.GetComponent<GearController>().ReturnToDefaultGun();
+                    controller.GetComponent<GearController>().ReturnToDefaultGun();
             }
         }
-        //for testing
-        else if (Input.GetKeyDown(KeyCode.Q))
-            projectileCount++;
-        else if (Input.GetKeyDown(KeyCode.E))
-            projectileCount--;
-
     }
 
     public bool ShouldPickup()
@@ -88,11 +82,11 @@ public class RangedAttack : MonoBehaviour, IAttackable
         cameraController.SetAmmoText(ammoLeft, maxAmmo);
     }
 
-    public void Attack(Animator animator)
+    public void Attack(PlayerController controller)
     {
 
-        animator.SetInteger("shootType", (int)System.Enum.Parse(typeof(ShootType), shootType.ToString()));
-        animator.SetTrigger("shoot");
+        controller.animator.SetInteger("shootType", (int)System.Enum.Parse(typeof(ShootType), shootType.ToString()));
+        controller.animator.SetTrigger("shoot");
         
         projectile.GetComponent<DamageController>().BaseDamage = baseDamage;
         projectile.GetComponent<BulletSpeedController>().Speed = projectileSpeed;
