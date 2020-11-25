@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class InteractController : MonoBehaviour
     private bool checkForInput;
     private IInteractable interactable;
     private bool inTrigger;
+    private GameObject currentlyLookingAt;
 
     void Start()
     {
@@ -27,6 +29,34 @@ public class InteractController : MonoBehaviour
         {
             interactable.Interact(this);
             OnTriggerExit(null);
+        }
+        
+    }
+
+    private void MarksRayTrace()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(
+            new Vector3(this.transform.position.x, 0.5f, this.transform.position.z),
+            this.transform.forward,
+            out hit,
+            3f
+            ))
+        {
+            currentlyLookingAt = hit.transform.gameObject;
+        }
+        else
+        {
+            currentlyLookingAt = null;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && currentlyLookingAt != null)
+        {
+
+            if (currentlyLookingAt.GetComponent<MarksIInteractable>() != null)
+            {
+                currentlyLookingAt.GetComponent<MarksIInteractable>().Interact();
+            }
         }
     }
 
@@ -67,8 +97,11 @@ public class InteractController : MonoBehaviour
                         GetComponent<GearController>().weapon.GetComponent<RangedAttack>().GetAmmo(powerup.value);
                         Destroy(other.gameObject);
                     }
-                    break;
+                    break;                    
             }
+            inTrigger = false;
+            interactText.enabled = false;
+            interactable = null;
         }
     }
 

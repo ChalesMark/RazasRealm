@@ -131,8 +131,12 @@ public class CameraController : MonoBehaviour
             outputText.color = new Color(1, 1, 1, outputTextFade);
             yield return new WaitForSeconds(time);
         }
-        StartCoroutine(FadeOutTextOutput());
-       
+        outputTextFade = 0;
+        chatBoxBG.color = new Color(chatBoxBG.color.r, chatBoxBG.color.g, chatBoxBG.color.b, 0);
+        outputText.text = "";
+        speaker.text = "";
+        //StartCoroutine(FadeOutTextOutput());
+
     }
 
     public Button GetCustomCloseButton()
