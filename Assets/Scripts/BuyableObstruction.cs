@@ -5,6 +5,8 @@ using UnityEngine;
 public class BuyableObstruction : MonoBehaviour, IBuyable, IInteractable
 {
 
+    public bool AutoInteract { get; set; } = false;
+
     [SerializeField]
     private int cost;
 

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CustomizationStation : MonoBehaviour, IInteractable
 {
+    
+    public bool AutoInteract { get; set; } = false;
     GameManager gameManager;
     CameraController cameraController;
     bool active;

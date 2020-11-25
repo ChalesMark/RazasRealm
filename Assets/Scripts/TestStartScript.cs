@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TestStartScript : MonoBehaviour, IInteractable
 {
+    
+    public bool AutoInteract { get; set; } = false;
     public GameObject waveManager;
 
     private bool started = false;

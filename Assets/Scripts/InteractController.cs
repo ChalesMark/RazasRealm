@@ -24,7 +24,7 @@ public class InteractController : MonoBehaviour
         {
             RayTraceInteract();
         }
-        if (interactable != null && Input.GetKeyDown(KeyCode.F))
+        if (interactable != null && (Input.GetKeyDown(KeyCode.F) || interactable.AutoInteract))
         {
             interactable.Interact(this);
             OnTriggerExit(null);
@@ -40,37 +40,6 @@ public class InteractController : MonoBehaviour
             interactable = other.GetComponent<IInteractable>();
             interactText.text = interactable.GetInteractText();
             interactText.enabled = true;
-        }
-
-        // Powerup pickup code
-        Powerup powerup = other.GetComponent<Powerup>();
-        if (powerup != null)
-        {
-            switch (powerup.powerupType)
-            {
-                case PowerupType.money:
-                    GetComponent<MoneyController>().AddMoney(powerup.value);
-                    Destroy(other.gameObject);
-                    break;
-                case PowerupType.key:
-                    if (!GetComponent<MoneyController>().HasKey())
-                    {
-                        GetComponent<MoneyController>().SetKey(true);
-                        Destroy(other.gameObject);
-                    }
-                    break;
-                case PowerupType.health:
-                    GetComponent<HealthController>().Heal(powerup.value);
-                    Destroy(other.gameObject);
-                    break;
-                case PowerupType.ammo:
-                    if (GetComponent<GearController>().weapon.GetComponent<RangedAttack>().ShouldPickup())
-                    {
-                        GetComponent<GearController>().weapon.GetComponent<RangedAttack>().GetAmmo(powerup.value);
-                        Destroy(other.gameObject);
-                    }
-                    break;                    
-            }
         }
     }
 

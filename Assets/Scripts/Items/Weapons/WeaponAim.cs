@@ -6,7 +6,6 @@ using UnityEngine;
 public class WeaponAim : MonoBehaviour, IWeaponComponent
 { 
 
-    [SerializeField]
     private float targetFOV = 50;
 
     private float zoomSpeed = 150f;

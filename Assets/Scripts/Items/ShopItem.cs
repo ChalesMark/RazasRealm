@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShopItem : MonoBehaviour, IBuyable, IPickable
 {
 
+    
+    public bool AutoInteract { get; set; } = false;
     public int cost;
     public bool permanentStock = true;
     

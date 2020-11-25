@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MarksTalkable : MonoBehaviour, IInteractable
 {
+    
+    public bool AutoInteract { get; set; } = false;
     public string[] text;
     public string speaker;
     public float readTime;

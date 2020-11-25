@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
+    
+    public bool AutoInteract { get; set; } = false;
     public bool open;
     bool lastState;
     Animator Animator;
