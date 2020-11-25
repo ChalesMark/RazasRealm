@@ -10,9 +10,10 @@ public class WaveManager : MonoBehaviour
     public GameObject Enemy3;
     public GameObject initialSpawnGroup;
     public int baseEnemyCount = 0;
-    public float timeBetweenWaves = 3;
+    public float timeBetweenWaves = 3.0f;
+    public float timeBetweenSpawns = 2.0f;
 
-    
+
     private List<Transform> spawnPoints;
     private List<GameObject> enemies;
     private Text waveText; 
@@ -21,7 +22,6 @@ public class WaveManager : MonoBehaviour
     private int enemiesSpawnedThisWave;
     private int totalEnemiesThisWave;
     private int enemiesRemaining;
-    private float timeBetweenSpawns = 3.0f;
     private bool finishedSpawning = false;
     
     // Start is called before the first frame update
@@ -85,6 +85,8 @@ public class WaveManager : MonoBehaviour
     public void StartNextWave()
     {
         currentWave++;
+        if (currentWave > PlayerPrefs.GetInt("Highscore"))
+            PlayerPrefs.SetInt("Highscore", currentWave);
         MoveWaveCounterToCenter();
         Invoke("MoveWaveCounterToBottomRight", 3);
         waveText.text = "Wave " + currentWave;
@@ -159,6 +161,12 @@ public class WaveManager : MonoBehaviour
     public int GetCurrentWave()
     {
         return currentWave;
+    }
+
+    private void OnDestroy()
+    {
+        Camera.main.transform.Find("Canvas").Find("WaveText").GetComponent<Text>().enabled = false;
+        Camera.main.transform.Find("Canvas").Find("EnemyCount").GetComponent<Text>().enabled = false;
     }
 
 }

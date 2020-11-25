@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
     public Text speaker;
     public Image chatBoxBG;
     public Text ammoText;
+    public Text highscoreText;
     
     float outputTextFade;
 
@@ -74,8 +75,15 @@ public class CameraController : MonoBehaviour
     // FadeToBlack
     // Fades the camera to black. Also disables player control. Use with the FadeToScreen function
     // Return:  IEnumerator
-    public IEnumerator FadeToBlack(string scene, string spawnPointName,GameManager gm)
+    public IEnumerator FadeToBlack(string scene, string spawnPointName, GameManager gm)
     {
+        if (scene == "Hub")
+        {
+            highscoreText.text = "Highest Wave: " + PlayerPrefs.GetInt("Highscore").ToString();
+            highscoreText.gameObject.SetActive(true);
+        }
+        else
+            highscoreText.gameObject.SetActive(false);
         SetFade(0);
         do
         {            
