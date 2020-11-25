@@ -15,6 +15,7 @@ public class BossController : MonoBehaviour
     {
         healthController = GetComponent<HealthController>();
         enemyController = GetComponent<IEnemyController>();
+        healthBar.gameObject.SetActive(true);
 
         //TODO: move this to health controller
         //healthBar.maxValue = healthController.maxHealth;
@@ -24,14 +25,14 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyController.PlayerSpotted)
-        {
-            healthBar.gameObject.SetActive(true);
-        }
-        else
-        {
-            healthBar.gameObject.SetActive(false);
-        }
+        //if(enemyController.PlayerSpotted)
+        //{
+        //    healthBar.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    healthBar.gameObject.SetActive(false);
+        //}
 
         //TODO: move this to health controller
         //healthBar.value = healthController.currHealth;

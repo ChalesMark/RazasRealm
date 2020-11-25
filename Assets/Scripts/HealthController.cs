@@ -35,7 +35,8 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        healthBar.value = currHealth;
+        if(healthBar != null)
+            healthBar.value = currHealth;
     }
 
 
@@ -48,12 +49,9 @@ public class HealthController : MonoBehaviour
     }
 
     public void Heal(int health) {
-        int amountHealed = health + currHealth;
-        if(amountHealed > maxHealth) {
+        currHealth += health;
+        if (currHealth >= maxHealth)
             currHealth = maxHealth;
-            return;
-        }
-        currHealth += amountHealed;
     }
 
 

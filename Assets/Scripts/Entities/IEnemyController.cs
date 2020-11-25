@@ -5,7 +5,6 @@ using UnityEngine;
 public interface IEnemyController
 {
     int KillGold { get; }
-    bool PlayerSpotted { get;}
 }
 
 
