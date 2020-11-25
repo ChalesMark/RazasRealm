@@ -12,6 +12,7 @@ public class BaddieController : MonoBehaviour, IEnemyController
     public TextMeshPro damageNumbers;
     public int killGold;
     NavMeshAgent agent;
+    public List<GameObject> lootDrops;
 
     [Tooltip("Speed the enemy travels")]
     [Range(0.0f, 10.0f)]
@@ -70,6 +71,16 @@ public class BaddieController : MonoBehaviour, IEnemyController
     void NavToPlayer()
     {
         agent.destination = player.transform.position;
+    }
+
+    public void DropLoot()
+    {
+        if(lootDrops.Count != 0)
+        {
+            int lootRoll = Random.Range(0, 10);
+            if (lootRoll < lootDrops.Count)
+                Instantiate(lootDrops[lootRoll], transform.position, transform.rotation);
+        }
     }
 
     private void OnTriggerStay(Collider other)

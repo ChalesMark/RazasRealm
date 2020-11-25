@@ -58,7 +58,10 @@ public class HealthController : MonoBehaviour
     public void Kill() {
         dead = true;
         if(tag == "Enemy")
+        {
             GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);
+            GetComponent<BaddieController>().DropLoot();
+        }
         if (GetComponent<BossController>() != null)
         {
             GetComponent<BossController>().Die();

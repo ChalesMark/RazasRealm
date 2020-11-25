@@ -930,9 +930,10 @@ MonoBehaviour:
   damageNumbers: {fileID: 4362682648724695287, guid: f26ffdb970e2657459fab45e5f05da33,
     type: 3}
   killGold: 1
-  RoamDistance: 50
-  AggroRange: 40
-  IgnoreDistance: 70
+  lootDrops:
+  - {fileID: 323577370319894686, guid: 54697d0d706b70c4ba141f778f3a6171, type: 3}
+  - {fileID: 5547612262841854008, guid: 86c35b27bbfba5f48bd13d84eb762945, type: 3}
+  - {fileID: 2218980413163740039, guid: 0e2da42403e514f458cee4b162c04986, type: 3}
   Speed: 4
   AttackCooldownTime: 5
   Damage: 20
