@@ -132,5 +132,6 @@ public class PlayerController : MonoBehaviour
     internal void DisableGun(bool disable)
     {
         gearController.weapon.enabled = disable;
+        gearController.GetComponent<InteractController>().enabled = disable;
     }
 }

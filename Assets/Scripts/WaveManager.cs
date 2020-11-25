@@ -8,10 +8,11 @@ public class WaveManager : MonoBehaviour
     public GameObject Enemy1;
     public GameObject Enemy2;
     public GameObject Enemy3;
-
+    public GameObject initialSpawnGroup;
     public int baseEnemyCount = 0;
     public float timeBetweenWaves = 3;
 
+    
     private List<Transform> spawnPoints;
     private List<GameObject> enemies;
     private Text waveText; 
@@ -52,10 +53,11 @@ public class WaveManager : MonoBehaviour
     List<Transform> GetSpawnPoints()
     {
         List<Transform> spawns = new List<Transform>();
-        GameObject spawnGroup = GameObject.Find("EnemySpawns");
-        if (spawnGroup)
-        foreach (Transform spawn in spawnGroup.transform)
-            spawns.Add(spawn);
+        if (initialSpawnGroup != null)
+        {
+            foreach (Transform spawn in initialSpawnGroup.transform)
+                spawns.Add(spawn);
+        }
 
         return spawns;
     }
@@ -146,6 +148,12 @@ public class WaveManager : MonoBehaviour
         position.anchorMin = new Vector2(1.0f, 0.0f);
         position.anchorMax = new Vector2(1.0f, 0.0f);
         position.anchoredPosition = new Vector3(-50.0f, 20.0f, 0.0f);
+    }
+
+    public void AddSpawns(GameObject spawnGroup)
+    {
+        foreach (Transform spawn in spawnGroup.transform)
+            spawnPoints.Add(spawn);
     }
 
     public int GetCurrentWave()

@@ -11,6 +11,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
     public bool keyRequirement;
     public int moneyCost;
+    public GameObject newEnemySpawnGroup;
 
     void Start()
     {
@@ -40,12 +41,16 @@ public class DoorController : MonoBehaviour, IInteractable
             {
                 moneyController.SetKey(false);
                 open = true;
+                if (newEnemySpawnGroup != null)
+                    GameObject.Find("WaveManager").GetComponent<WaveManager>().AddSpawns(newEnemySpawnGroup);
             }
         }
         else if (moneyCost <= moneyController.GetMoney())
         {
             moneyController.DeductMoney(moneyCost);
             open = true;
+            if (newEnemySpawnGroup != null)
+                GameObject.Find("WaveManager").GetComponent<WaveManager>().AddSpawns(newEnemySpawnGroup);
         }
     }
 

@@ -35,8 +35,7 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        if (healthBar)
-            healthBar.value = currHealth;
+        healthBar.value = currHealth;
     }
 
 
@@ -44,7 +43,6 @@ public class HealthController : MonoBehaviour
         currHealth -= damage;
         if(currHealth <= 0 && !dead) {
             currHealth = 0;
-            //healthBar.value = 0;
             Kill();
         }
     }

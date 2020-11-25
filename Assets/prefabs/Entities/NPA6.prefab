@@ -1086,6 +1086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 20
+  key: 0
 --- !u!65 &-8252526449853392586
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -32,9 +32,9 @@ public class InteractController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        inTrigger = true;
         if (other.GetComponent<IInteractable>() != null)
         {
+            inTrigger = true;
             interactable = other.GetComponent<IInteractable>();
             interactText.text = interactable.GetInteractText();
             interactText.enabled = true;
