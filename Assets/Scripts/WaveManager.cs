@@ -77,6 +77,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartFirstWave()
     {
+        GameObject.Find("GameManager").GetComponent<MusicManager>().Play(Music.level);
         waveText.enabled = true;
         enemiesRemainingText.enabled = true;
         StartNextWave();
