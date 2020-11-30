@@ -3304,7 +3304,7 @@ PrefabInstance:
     - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
       propertyPath: hats.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
@@ -3321,19 +3321,19 @@ PrefabInstance:
         type: 3}
       propertyPath: hats.Array.data[0]
       value: 
-      objectReference: {fileID: 5922920252131738943, guid: ef2a63da3f153c742aabc25f0e4c3a5a,
+      objectReference: {fileID: 5305553623525056381, guid: 74190ed5371ba2144b17f5ac8de181cb,
         type: 3}
     - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
       propertyPath: hats.Array.data[1]
       value: 
-      objectReference: {fileID: 426838743705007741, guid: b0a074cdc6e046647a4c6242ca60fe10,
+      objectReference: {fileID: 9025227509137996598, guid: 11177a05d24cb0944ba3d811c5f2548a,
         type: 3}
     - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
       propertyPath: hats.Array.data[2]
       value: 
-      objectReference: {fileID: 4859299261672403900, guid: 464133da68197c7428d6bf49a68b4fa0,
+      objectReference: {fileID: 6091782627023849760, guid: 931d70c3d951da84ebef4a97efb56b63,
         type: 3}
     - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
@@ -3345,6 +3345,24 @@ PrefabInstance:
       propertyPath: GameUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
+        type: 3}
+      propertyPath: hats.Array.data[3]
+      value: 
+      objectReference: {fileID: 6173567105044204164, guid: 7c4e1410f3e461d4f89110e810fa0b7d,
+        type: 3}
+    - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
+        type: 3}
+      propertyPath: hats.Array.data[4]
+      value: 
+      objectReference: {fileID: 8055304640656289457, guid: 8f15ae76c4682a544a126242350f1e6f,
+        type: 3}
+    - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
+        type: 3}
+      propertyPath: hats.Array.data[5]
+      value: 
+      objectReference: {fileID: 1481950111825362437, guid: 96036fae10e668a46b2560b6188e769b,
+        type: 3}
     - target: {fileID: 5547052508097913827, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
       propertyPath: m_Name
