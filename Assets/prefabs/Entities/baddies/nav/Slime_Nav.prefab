@@ -91,7 +91,7 @@ MonoBehaviour:
   - {fileID: 5547612262841854008, guid: 86c35b27bbfba5f48bd13d84eb762945, type: 3}
   Speed: 2
   AttackCooldownTime: 0.5
-  Damage: 1
+  Damage: 3
   blind: 0
 --- !u!114 &8476419949371004229
 MonoBehaviour:

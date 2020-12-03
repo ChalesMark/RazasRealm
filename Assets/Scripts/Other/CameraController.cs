@@ -181,5 +181,10 @@ public class CameraController : MonoBehaviour
         {
             ammoText.text = ammoLeft + "/" + ammoMax;
         }
+
+        if (ammoLeft < ammoMax / 4)
+            ammoText.color = Color.red;
+        else
+            ammoText.color = Color.green;
     }
 }
