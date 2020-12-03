@@ -398,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: LevelSelection
   spawnPointName: main
+  teleportSound: {fileID: 8300000, guid: a7f161128bca05444a247e9d44459397, type: 3}
 --- !u!1001 &293144680
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class RangedAttack : MonoBehaviour, IAttackable
     [SerializeField]
     private bool automatic;
     [SerializeField]
+    private bool loopingAudio;
+    [SerializeField]
     private float manualfireCooldown;
     [SerializeField]
     private int projectileSpeed;
@@ -34,6 +36,8 @@ public class RangedAttack : MonoBehaviour, IAttackable
 
     CameraController cameraController;
 
+    private AudioSource soundEffect;
+
     private bool onCooldown = false;
 
     public enum ShootType { Normal, MachineGun, Steady, Big};
@@ -43,6 +47,8 @@ public class RangedAttack : MonoBehaviour, IAttackable
         cameraController = Camera.main.GetComponent<CameraController>();
         ammoLeft = maxAmmo;
         cameraController.SetAmmoText(ammoLeft, maxAmmo);
+        if (GetComponent<AudioSource>() != null)
+            soundEffect = GetComponent<AudioSource>();
     }
 
     public void RunWeaponComponent(PlayerController controller) 
@@ -59,11 +65,19 @@ public class RangedAttack : MonoBehaviour, IAttackable
             else if (ammoLeft > 0)
             {
                 ammoLeft--;
-                cameraController.SetAmmoText(ammoLeft,maxAmmo);
+                cameraController.SetAmmoText(ammoLeft, maxAmmo);
                 Attack(controller);
                 if (ammoLeft <= 0)
+                {
+                    if (!loopingAudio)
+                        GameObject.Find("GameManager").GetComponent<AudioSource>().PlayOneShot(soundEffect.clip, 0.75f);
                     controller.GetComponent<GearController>().ReturnToDefaultGun();
+                }
             }
+        }
+        else if(loopingAudio && soundEffect.isPlaying && !Input.GetKey(KeyCode.Mouse0))
+        {
+            soundEffect.Stop();
         }
     }
 
@@ -93,14 +107,14 @@ public class RangedAttack : MonoBehaviour, IAttackable
         projectile.GetComponent<LifeSpanController>().Lifespan = projectileLifeSpan;
 
         Quaternion leveledForward = Quaternion.Euler(0, this.transform.rotation.eulerAngles.y, 0);
-        print(leveledForward);
 
         for (int i = 0; i < projectileCount; i++)
             Instantiate(projectile, gameObject.transform.Find("projectileSpawn").transform.position, leveledForward * Quaternion.AngleAxis(UnityEngine.Random.Range(-spread, spread), Vector3.up));
 
+        PlaySoundEffect();
+
         onCooldown = true;
         StartCoroutine(CooldownCoroutine(automatic ? autofireRate : manualfireCooldown));
-        print(gameObject.name + " shot a " + projectile.name + "\nDamage: " + baseDamage + "\nSpeed: " + projectileSpeed + "\nLifespan: " + projectileLifeSpan);
     }
 
     private IEnumerator CooldownCoroutine(float seconds)
@@ -109,4 +123,17 @@ public class RangedAttack : MonoBehaviour, IAttackable
         onCooldown = false;
     }
 
+    private void PlaySoundEffect()
+    {
+        if (loopingAudio)
+        {
+            if (!soundEffect.isPlaying)
+            {
+                soundEffect.loop = true;
+                soundEffect.Play();
+            }
+        }
+        else
+            soundEffect.Play();
+    }
 }

@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 6583696556472054299}
   - component: {fileID: 6583696556472054298}
   - component: {fileID: 6583696556472054300}
+  - component: {fileID: -2715850507144227744}
   m_Layer: 0
   m_Name: weapons_guns_flameThrower
   m_TagString: Untagged
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6d1c65a4c9f5a4f8bcc7c1d730bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
 --- !u!114 &6583696556472054299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102fe09c1bd58d749bbbe6d185564c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slowSpeed: 7
+  percentageBoost: 20
 --- !u!114 &6583696556472054298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,13 +208,14 @@ MonoBehaviour:
   spread: 10
   autofireRate: 0.1
   automatic: 1
+  loopingAudio: 1
   manualfireCooldown: 0.1
-  baseDamage: 1
-  projectileSpeed: 20
+  projectileSpeed: 40
   projectileLifeSpan: 0.1
   shootType: 2
   ammoLeft: 0
   maxAmmo: 200
+  baseDamage: 5
 --- !u!114 &6583696556472054300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,3 +230,100 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 20
   permanentStock: 1
+  buySound: {fileID: 8300000, guid: 12326d05a4f668f45a32a1e23f90f786, type: 3}
+--- !u!82 &-2715850507144227744
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764041460927189784}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fe6893c4ef854f645b5eede5c4d091e6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

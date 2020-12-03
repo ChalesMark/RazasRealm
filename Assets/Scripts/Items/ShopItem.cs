@@ -9,6 +9,7 @@ public class ShopItem : MonoBehaviour, IBuyable, IPickable
     public bool AutoInteract { get; set; } = false;
     public int cost;
     public bool permanentStock = true;
+    public AudioClip buySound;
     
     // Start is called before the first frame update
     public void Interact(InteractController controller){
@@ -22,7 +23,7 @@ public class ShopItem : MonoBehaviour, IBuyable, IPickable
         if (cost <= controller.GetMoney())
         {
             controller.DeductMoney(cost);
-            print(controller.GetMoney());
+            GameObject.Find("GameManager").GetComponent<AudioSource>().PlayOneShot(buySound);
             return true;
         }
         else

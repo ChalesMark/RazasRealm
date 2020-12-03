@@ -116,6 +116,10 @@ public class GameManager : MonoBehaviour
     public void LoadScene2(string scene, string spawnPointName)
     {
         SceneManager.LoadScene(scene);
+        if (scene == "Hub")
+            Camera.main.transform.Find("Canvas").Find("Highscore").GetComponent<Text>().enabled = true;
+        else
+            Camera.main.transform.Find("Canvas").Find("Highscore").GetComponent<Text>().enabled = false;
 
         if (SceneManager.GetActiveScene().name != scene)
         {

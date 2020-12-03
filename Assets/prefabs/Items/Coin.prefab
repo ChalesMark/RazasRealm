@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 10
   powerupType: 0
+  pickupSound: {fileID: 8300000, guid: 14444ad948522f3418d3dc1140b231b0, type: 3}
 --- !u!135 &1214042479699871141
 SphereCollider:
   m_ObjectHideFlags: 0

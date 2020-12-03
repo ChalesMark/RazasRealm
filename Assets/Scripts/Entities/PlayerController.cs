@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private GameObject currentlyLookingAt;
     public KeyCode actionKey = KeyCode.F;
 
+
     // Start
     // Runs once the object is loaded in
     void Awake()

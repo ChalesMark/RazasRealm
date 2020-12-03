@@ -13,6 +13,9 @@ public class HealthController : MonoBehaviour
     public  int currHealth;
     [HideInInspector]
     public bool dead = false;
+    public AudioClip deathSound;
+    public AudioClip damageSound;
+    private AudioSource audio;
     private bool invincible = false;
 
 
@@ -20,6 +23,10 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
+
+        if(GetComponent<AudioSource>() != null)
+            audio = GetComponent<AudioSource>();
+
         currHealth = maxHealth;
         if (gameObject.tag == "Enemy")
         {
@@ -42,6 +49,8 @@ public class HealthController : MonoBehaviour
 
     public void DecreaseCurrentHealth(int damage) {
         currHealth -= damage;
+        if (damageSound)
+            audio.PlayOneShot(damageSound);
         if(currHealth <= 0 && !dead) {
             currHealth = 0;
             Kill();
@@ -57,6 +66,8 @@ public class HealthController : MonoBehaviour
 
     public void Kill() {
         dead = true;
+        if (deathSound)
+            GameObject.Find("GameManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
         if(tag == "Enemy")
         {
             GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);

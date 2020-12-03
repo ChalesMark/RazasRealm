@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 10
   powerupType: 1
+  pickupSound: {fileID: 8300000, guid: 0658d9c8fdbc47d488d8fa24d839042b, type: 3}
 --- !u!114 &4628708812299814269
 MonoBehaviour:
   m_ObjectHideFlags: 0

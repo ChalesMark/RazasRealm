@@ -14,6 +14,7 @@ public class LevelPortal : MonoBehaviour
     public string scene;
     [Header("Enter the scene's spawn point you want to teleport to")]
     public string spawnPointName;
+    public AudioClip teleportSound;
 
     // OnTriggerEnter
     // Is called when a collider enters. Used to check if the player touches it
@@ -23,6 +24,7 @@ public class LevelPortal : MonoBehaviour
         if (other.tag == "Player")
         {
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gm.GetComponent<AudioSource>().PlayOneShot(teleportSound, 0.3f);
             gm.GetPlayer().enabled = false;
             gm.LoadScene(scene, spawnPointName);            
         }

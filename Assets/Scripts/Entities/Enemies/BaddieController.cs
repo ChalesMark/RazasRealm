@@ -87,7 +87,6 @@ public class BaddieController : MonoBehaviour, IEnemyController
     {
         if (other.gameObject.tag == "Player" && !attackOnCooldown)
         {
-            print("TRIGGER STAY" + name + " " + other.gameObject.name);
             other.gameObject.GetComponent<HealthController>().DecreaseCurrentHealth(Damage);
             damageNumbers.text = Damage.ToString();
             Instantiate(damageNumbers, transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Quaternion.LookRotation(Camera.main.transform.position - transform.position));

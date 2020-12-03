@@ -43,6 +43,7 @@ public class DoorController : MonoBehaviour, IInteractable
             {
                 moneyController.SetKey(false);
                 open = true;
+                GetComponent<AudioSource>().Play();
                 if (newEnemySpawnGroup != null)
                     GameObject.Find("WaveManager").GetComponent<WaveManager>().AddSpawns(newEnemySpawnGroup);
             }
@@ -51,6 +52,7 @@ public class DoorController : MonoBehaviour, IInteractable
         {
             moneyController.DeductMoney(moneyCost);
             open = true;
+            GetComponent<AudioSource>().Play();
             if (newEnemySpawnGroup != null)
                 GameObject.Find("WaveManager").GetComponent<WaveManager>().AddSpawns(newEnemySpawnGroup);
         }

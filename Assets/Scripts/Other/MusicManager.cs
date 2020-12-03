@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
     AudioSource audioSource;
     public Music currentMusic = Music.menu;
 
-    private void Start()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
