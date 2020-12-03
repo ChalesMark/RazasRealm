@@ -4938,8 +4938,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - THIS IS TEXT
-  speaker: BLAH BLAH
+  - Welcome to Raza's Realm!
+  - Enter the Purple Portal to begin.
+  speaker: Sign of Knowledge
   readTime: 2
   showChatBox: 1
 --- !u!1001 &7554572286293777625

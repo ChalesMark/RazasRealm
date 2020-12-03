@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public bool ignoreGameStart;
 
     [Header("Other Stuff")]
+    public Text titleText;
     public Button startGameButon;
     public Slider dresserRotate;
     public List<GameObject> hats;
@@ -85,9 +86,10 @@ public class GameManager : MonoBehaviour
         print("START GAME!");
         LoadScene("Hub", "main");
         musicManager.Play(Music.hub);
-        Camera.main.transform.Find("Canvas").Find("TitleText").GetComponent<Text>().enabled = false;
+        titleText.enabled = false;
         startGameButon.gameObject.SetActive(false);
-
+        Camera.main.transform.Find("Canvas").Find("PlayerHealth").gameObject.SetActive(true);
+        Camera.main.transform.Find("Canvas").Find("MoneyText").GetComponent<Text>().enabled = true;
     }
 
     // LoadScene
