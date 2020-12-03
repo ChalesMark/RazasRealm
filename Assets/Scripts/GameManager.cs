@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
         print("START GAME!");
         LoadScene("Hub", "main");
         musicManager.Play(Music.hub);
+        Camera.main.transform.Find("Canvas").Find("TitleText").GetComponent<Text>().enabled = false;
         startGameButon.gameObject.SetActive(false);
 
     }
