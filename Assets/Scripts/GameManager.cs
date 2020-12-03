@@ -22,12 +22,15 @@ public class GameManager : MonoBehaviour
     public bool ignoreGameStart;
 
     [Header("Other Stuff")]
+    public Button startGameButon;
     public Slider dresserRotate;
     public List<GameObject> hats;
 
     // Transition holding place
     public GameObject lastGun;
     public GameObject lastHat;
+
+    MusicManager musicManager; 
 
     #region Getters and Setters
     // GetPlayer
@@ -48,30 +51,42 @@ public class GameManager : MonoBehaviour
     // Runs once the gameobject is loaded in
     void Start()
     {
-        Camera.main.cullingMask = 1 << 0;        
+        Camera.main.cullingMask = 1 << 0;
+        musicManager = GetComponent<MusicManager>();
 
         // Sets gameobjects to DontDestroyOnLoad so they continue to exist between level changes
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(Camera.main);
-        
 
-        if(!ignoreGameStart)
-            LoadScene("Hub","main");
-        else
+        musicManager.Play(Music.menu);
+
+        if (ignoreGameStart)
         {
+            musicManager.Play(Music.hub);
+            startGameButon.gameObject.SetActive(false);
             Vector3 mainSP;
             if (GameObject.Find("SpawnPoint"))
                 mainSP = GameObject.Find("SpawnPoint").transform.position;
             else
                 mainSP = Vector3.zero;
 
-
             player = Instantiate(playerPrefab, mainSP, Quaternion.identity, null);
             Camera.main.GetComponent<CameraController>().SetTarget(player);
         }
 
+        if (startGameButon)
+            startGameButon.onClick.AddListener(StartGame);
         if (dresserRotate)
             dresserRotate.onValueChanged.AddListener(delegate { player.transform.rotation = Quaternion.Euler(0, -dresserRotate.value, 0); });
+    }
+
+    public void StartGame()
+    {
+        print("START GAME!");
+        LoadScene("Hub", "main");
+        musicManager.Play(Music.hub);
+        startGameButon.gameObject.SetActive(false);
+
     }
 
     // LoadScene
@@ -79,6 +94,8 @@ public class GameManager : MonoBehaviour
     // Parama:  string scene:       The name of the scene.
     public void LoadScene(string scene,string spawnPointName)
     {
+        if (musicManager.GetMusic() == Music.level)
+            musicManager.PlayVictory();
         if (player)
         {
             lastGun = Instantiate(player.GetComponent<GearController>().weapon.gameObject);

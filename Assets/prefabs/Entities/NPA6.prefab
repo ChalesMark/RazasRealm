@@ -326,7 +326,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -243156224549324474, guid: 79af597d254618749ad8ff04102302a7, type: 3}
+  - {fileID: 2100000, guid: e3b6f30e80751704c863ccb5f46380dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   StartingGun: {fileID: 8245736201428637291, guid: 5b2ce4a25aff0da43941042edae63b02,
     type: 3}
   weapon: {fileID: 8245736201428637291, guid: 5b2ce4a25aff0da43941042edae63b02, type: 3}
-  hat: {fileID: 5922920252131738943, guid: ef2a63da3f153c742aabc25f0e4c3a5a, type: 3}
+  hat: {fileID: 5305553623525056381, guid: 74190ed5371ba2144b17f5ac8de181cb, type: 3}
   gunBone: {fileID: 4143532483804306965}
   hatBone: {fileID: 7683795563985219877}
 --- !u!114 &-5677742407701039171
