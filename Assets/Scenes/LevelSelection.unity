@@ -2204,12 +2204,12 @@ PrefabInstance:
     - target: {fileID: -4694482280317687651, guid: 8a0c9226371cc39478fe09dbc052c909,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 615933728169144856, guid: 8a0c9226371cc39478fe09dbc052c909,
         type: 3}
       propertyPath: scene
-      value: NavTestScene
+      value: level_mark
       objectReference: {fileID: 0}
     - target: {fileID: 615933728169144856, guid: 8a0c9226371cc39478fe09dbc052c909,
         type: 3}

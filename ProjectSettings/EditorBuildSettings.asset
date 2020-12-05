@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NavTestScene.unity
     guid: 602a3a69b2d12df4dafce5b5d1131caa
+  - enabled: 1
+    path: Assets/Scenes/Levels/level_mark.unity
+    guid: a546570ba8e5e12429e55e6c6dedb5f0
   m_configObjects: {}
