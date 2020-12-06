@@ -8,8 +8,14 @@ public class PauseScript : MonoBehaviour
 {
 
     public GameObject pauseMenuUI;
+    public GameManager gameManager;
 
     public static bool gameIsPaused;
+
+
+    void Start() {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -29,6 +35,7 @@ public class PauseScript : MonoBehaviour
 
     public void Resume()
     {
+        gameManager.ReturnControl();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
@@ -36,6 +43,7 @@ public class PauseScript : MonoBehaviour
 
     void Pause()
     {
+        gameManager.TakeAwayControl();
         string sceneName = SceneManager.GetActiveScene().name;
         if(sceneName != "Menu" && sceneName != "Hub") {
             pauseMenuUI.SetActive(true);

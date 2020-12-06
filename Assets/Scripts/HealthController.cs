@@ -17,13 +17,14 @@ public class HealthController : MonoBehaviour
     public AudioClip damageSound;
     private AudioSource audio;
     private bool invincible = false;
+    private GameManager gameManager;
 
 
     private Slider healthBar;
 
     private void Start()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         if(GetComponent<AudioSource>() != null)
             audio = GetComponent<AudioSource>();
 
@@ -66,12 +67,17 @@ public class HealthController : MonoBehaviour
 
     public void Kill() {
         dead = true;
+
         if (deathSound)
             GameObject.Find("GameManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
         if(tag == "Enemy")
         {
-            GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);
+            gameManager.GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);
             GetComponent<BaddieController>().DropLoot();
+        }
+        else if (tag == "Player") 
+        {
+           gameManager.StartGame();
         }
         if (GetComponent<BossController>() != null)
         {
