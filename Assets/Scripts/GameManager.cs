@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
         startGameButon.gameObject.SetActive(false);
         Camera.main.transform.Find("Canvas").Find("PlayerHealth").gameObject.SetActive(true);
         Camera.main.transform.Find("Canvas").Find("MoneyText").GetComponent<Text>().enabled = true;
+        //AHHHH I CAN FEEL THE STRUCTURE FALLING APART :(
+        Camera.main.GetComponentInChildren<PauseScript>().Resume();
     }
 
     // LoadScene
