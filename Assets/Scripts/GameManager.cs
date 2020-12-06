@@ -176,6 +176,9 @@ public class GameManager : MonoBehaviour
 
     internal void TakeAwayControl()
     {
+        if(player == null) {
+            return;
+        }
         PlayerController pc = player.GetComponent<PlayerController>();
         pc.StopAnimation();
         pc.DisableGun(false);
@@ -184,7 +187,10 @@ public class GameManager : MonoBehaviour
     }
     internal void ReturnControl()
     {
-        PlayerController pc = player.GetComponent<PlayerController>();
+        if(player == null) {
+            return;
+        }
+        PlayerController pc = player?.GetComponent<PlayerController>();
         pc.DisableGun(true);
         pc.enabled = true;
     }

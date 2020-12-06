@@ -70,7 +70,9 @@ public class BaddieController : MonoBehaviour, IEnemyController
 
     void NavToPlayer()
     {
-        agent.destination = player.transform.position;
+        if(player != null) {
+            agent.destination = player.transform.position;
+        }
     }
 
     public void DropLoot()

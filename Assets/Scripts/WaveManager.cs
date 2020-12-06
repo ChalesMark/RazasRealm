@@ -166,8 +166,11 @@ public class WaveManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Camera.main.transform.Find("Canvas").Find("WaveText").GetComponent<Text>().enabled = false;
-        Camera.main.transform.Find("Canvas").Find("EnemyCount").GetComponent<Text>().enabled = false;
+        Transform canvas = Camera.main.transform.Find("Canvas");
+        if(canvas != null) {
+            canvas.Find("WaveText").GetComponent<Text>().enabled = false;
+            canvas.Find("EnemyCount").GetComponent<Text>().enabled = false;
+        }
     }
 
 }
