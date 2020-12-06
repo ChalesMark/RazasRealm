@@ -43,9 +43,9 @@ public class PauseScript : MonoBehaviour
 
     void Pause()
     {
-        gameManager.TakeAwayControl();
         string sceneName = SceneManager.GetActiveScene().name;
         if(sceneName != "Menu" && sceneName != "Hub") {
+            gameManager.TakeAwayControl();
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             gameIsPaused = true;
