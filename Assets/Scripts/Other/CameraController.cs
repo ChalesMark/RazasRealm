@@ -48,11 +48,15 @@ public class CameraController : MonoBehaviour
         {
             if (!specialLook)
             {
+                if (!fade.active)
+                    fade.SetActive(true);
                 this.transform.rotation = Quaternion.Euler(50, 0, 0);               
                 this.transform.position = target.position + new Vector3(0, distance + distance / 4, -distance);
             }
             else
             {
+                if (fade.active)
+                    fade.SetActive(false);
                 this.transform.rotation = specialLook.rotation;
                 this.transform.position = target.position + specialLook.position;
             }

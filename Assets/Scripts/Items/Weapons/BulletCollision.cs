@@ -14,7 +14,7 @@ public class BulletCollision : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {      
+    {
         if (other.tag == "Enemy")
         {
             print("Owie :c");
@@ -23,9 +23,9 @@ public class BulletCollision : MonoBehaviour
             other.GetComponent<BaddieController>().Bleed();
             Destroy(gameObject);
         }
-    }
-
-    private void OnCollisionEnter(Collision coll) {
-        Destroy(gameObject);
+        else if (other.tag != "Player")
+            Destroy(gameObject);
+        else
+            print(other);
     }
 }

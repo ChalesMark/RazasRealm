@@ -534,7 +534,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1991615599}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+        m_TargetAssemblyTypeName: 
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -1320,7 +1320,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1991615599}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+        m_TargetAssemblyTypeName: 
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -1575,6 +1575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 597998951}
+  gameManager: {fileID: 0}
 --- !u!1 &2033038302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1659,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 157990397}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: 
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -4122,7 +4123,7 @@ PrefabInstance:
     - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
       propertyPath: hats.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
@@ -4186,6 +4187,18 @@ PrefabInstance:
       propertyPath: titleText
       value: 
       objectReference: {fileID: 1177743345}
+    - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
+        type: 3}
+      propertyPath: hats.Array.data[6]
+      value: 
+      objectReference: {fileID: 2546347549074609035, guid: 960d88acbeaac0f45b3d942721dabd76,
+        type: 3}
+    - target: {fileID: 5547052508097913826, guid: b969fcce142ac7048aa10e29ea12f54d,
+        type: 3}
+      propertyPath: hats.Array.data[7]
+      value: 
+      objectReference: {fileID: 1339467436124259495, guid: 024cb316ec6b49a43a206c5f5264d0c7,
+        type: 3}
     - target: {fileID: 5547052508097913827, guid: b969fcce142ac7048aa10e29ea12f54d,
         type: 3}
       propertyPath: m_Name
