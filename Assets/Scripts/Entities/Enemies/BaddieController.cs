@@ -85,6 +85,29 @@ public class BaddieController : MonoBehaviour, IEnemyController
         }
     }
 
+    public void DropGuaranteedLoot()
+    {
+        if(lootDrops.Count != 0)
+        {
+            int lootRoll = Random.Range(0, lootDrops.Count - 1);
+            Instantiate(lootDrops[lootRoll], transform.position, transform.rotation);
+        }
+    }
+
+    public void DropAllLoot()
+    {
+        if (lootDrops.Count != 0)
+        {
+            foreach (GameObject loot in lootDrops)
+            {
+                Vector3 spawnOffset = new Vector3(Random.Range(-2.0f, 2.0f), 
+                                                  0, 
+                                                  Random.Range(-2.0f, 2.0f));
+                Instantiate(loot, transform.position + spawnOffset, transform.rotation);
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player" && !attackOnCooldown)

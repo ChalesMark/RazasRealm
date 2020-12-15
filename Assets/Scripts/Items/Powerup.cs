@@ -42,7 +42,7 @@ public class Powerup : MonoBehaviour, IPickable
                 RangedAttack attack = controller.weapon.GetComponent<RangedAttack>();
                 if (attack != null && attack.ShouldPickup())
                 {
-                   attack.GetAmmo(value);
+                   attack.GetAmmo(attack.maxAmmo / 4);
                    controller.GetComponent<AudioSource>().PlayOneShot(pickupSound);
                    Destroy(gameObject);
                 }

@@ -21,6 +21,7 @@ public class HealthController : MonoBehaviour
 
 
     private Slider healthBar;
+    private Text healthBarText;
 
     private void Start()
     {
@@ -29,9 +30,20 @@ public class HealthController : MonoBehaviour
             audio = GetComponent<AudioSource>();
 
         currHealth = maxHealth;
+
         if (gameObject.tag == "Enemy")
         {
             maxHealth += enemyHealthScaling * GameObject.Find("WaveManager").GetComponent<WaveManager>().GetCurrentWave();
+            currHealth = maxHealth;
+            if(GetComponent<BossController>() != null)
+            {
+                healthBar = Camera.main.transform.Find("Canvas").Find("BossHealth").GetComponent<Slider>();
+                healthBarText = Camera.main.transform.Find("Canvas").Find("BossHealth").Find("HealthText").GetComponent<Text>();
+                healthBar.maxValue = maxHealth;
+                healthBar.value = currHealth;
+                healthBarText.text = maxHealth + " / " + maxHealth;
+                healthBar.gameObject.SetActive(true);
+            }
         }
         else if (gameObject.tag == "Player")
         {
@@ -45,6 +57,8 @@ public class HealthController : MonoBehaviour
     {
         if(healthBar != null)
             healthBar.value = currHealth;
+        if (healthBarText != null)
+            healthBarText.text = currHealth + " / " + maxHealth;
     }
 
 
@@ -73,15 +87,19 @@ public class HealthController : MonoBehaviour
         if(tag == "Enemy")
         {
             gameManager.GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);
-            GetComponent<BaddieController>().DropLoot();
+            if (GetComponent<BossController>() != null)
+            {
+                healthBar.gameObject.SetActive(false);
+                GetComponent<BossController>().DropLoot();
+            }
+            else
+                GetComponent<BaddieController>().DropLoot();
         }
         else if (tag == "Player") 
         {
+           GetComponent<MoneyController>().SetMoney(0);
+           Camera.main.transform.Find("Canvas").Find("BossHealth").gameObject.SetActive(false);
            gameManager.StartGame();
-        }
-        if (GetComponent<BossController>() != null)
-        {
-            GetComponent<BossController>().Die();
         }
         Destroy(gameObject);
     }

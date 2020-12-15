@@ -567,6 +567,8 @@ MonoBehaviour:
   scene: LevelSelection
   spawnPointName: main
   teleportSound: {fileID: 8300000, guid: a7f161128bca05444a247e9d44459397, type: 3}
+  active: 1
+  activatePrice: 0
 --- !u!1001 &293144680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2773,7 +2775,7 @@ PrefabInstance:
     - target: {fileID: 5711879136638272191, guid: 40082d33fdf819b4c9c47d34715aa792,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5711879136638272191, guid: 40082d33fdf819b4c9c47d34715aa792,
         type: 3}
@@ -4505,9 +4507,9 @@ Transform:
   - {fileID: 566624909}
   - {fileID: 551635599}
   - {fileID: 1627365972}
-  - {fileID: 1427594926}
-  - {fileID: 1915798604}
   - {fileID: 1443560464}
+  - {fileID: 1915798604}
+  - {fileID: 1427594926}
   - {fileID: 548108371}
   - {fileID: 1052949254}
   - {fileID: 1100938077}
@@ -4522,23 +4524,23 @@ Transform:
   - {fileID: 882482353}
   - {fileID: 293144681}
   - {fileID: 1610824426}
+  - {fileID: 1256119552}
+  - {fileID: 984252535}
   - {fileID: 2084363838}
   - {fileID: 994236359}
   - {fileID: 1730143584}
-  - {fileID: 984252535}
-  - {fileID: 1256119552}
   - {fileID: 819841877}
+  - {fileID: 2000206084}
   - {fileID: 1029175224}
   - {fileID: 138203887}
   - {fileID: 1207375160}
-  - {fileID: 2000206084}
   - {fileID: 1749473960}
+  - {fileID: 1365194897}
   - {fileID: 259652373}
   - {fileID: 1648383319}
   - {fileID: 1408398144}
   - {fileID: 32330485}
   - {fileID: 1791817138}
-  - {fileID: 1365194897}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}

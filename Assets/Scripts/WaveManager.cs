@@ -8,10 +8,12 @@ public class WaveManager : MonoBehaviour
     public GameObject Enemy1;
     public GameObject Enemy2;
     public GameObject Enemy3;
+    public GameObject Boss;
     public GameObject initialSpawnGroup;
     public int baseEnemyCount = 0;
     public float timeBetweenWaves = 3.0f;
     public float timeBetweenSpawns = 2.0f;
+    public int bossSpawnWave = 5;
 
 
     private List<Transform> spawnPoints;
@@ -23,6 +25,7 @@ public class WaveManager : MonoBehaviour
     private int totalEnemiesThisWave;
     private int enemiesRemaining;
     private bool finishedSpawning = false;
+    private bool keyDropped = false;
     
     // Start is called before the first frame update
     void Start()
@@ -106,6 +109,12 @@ public class WaveManager : MonoBehaviour
             InvokeRepeating("SpawnEnemy", 0, timeBetweenSpawns);
         else
             InvokeRepeating("SpawnEnemy", timeBetweenWaves, timeBetweenSpawns);
+
+        if(currentWave % bossSpawnWave == 0)
+        {
+            Invoke("SpawnBoss", timeBetweenWaves);
+        }
+            
     }
 
     public void StopSpawning()
@@ -119,6 +128,13 @@ public class WaveManager : MonoBehaviour
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
         GameObject enemy = enemies[Random.Range(0, enemies.Count)];
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        enemiesSpawnedThisWave++;
+    }
+
+    public void SpawnBoss()
+    {
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        Instantiate(Boss, spawnPoint.position, spawnPoint.rotation);
         enemiesSpawnedThisWave++;
     }
 
@@ -162,6 +178,16 @@ public class WaveManager : MonoBehaviour
     public int GetCurrentWave()
     {
         return currentWave;
+    }
+
+    public void SetKeyDropped()
+    {
+        keyDropped = true;
+    }
+
+    public bool GetKeyDropped()
+    {
+        return keyDropped;
     }
 
     private void OnDestroy()

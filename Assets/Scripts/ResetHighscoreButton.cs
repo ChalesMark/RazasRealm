@@ -10,12 +10,12 @@ public class ResetHighscoreButton : MonoBehaviour, IInteractable
 
     public string GetInteractText()
     {
-        return "Press F to Reset Highest Wave";
+        return "Press F to Reset Highscore and Unlocks";
     }
 
     public void Interact(InteractController interactController)
     {
-        PlayerPrefs.SetInt("Highscore", 0);
+        PlayerPrefs.DeleteAll();
         Camera.main.transform.Find("Canvas").Find("Highscore").GetComponent<Text>().text = "Highest Wave: " + PlayerPrefs.GetInt("Highscore").ToString();
     }
 }

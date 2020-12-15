@@ -84,7 +84,7 @@ MonoBehaviour:
   blood: {fileID: 7137356873325856154, guid: 3aa4a8c67cdf3244d98cc9768b974c04, type: 3}
   damageNumbers: {fileID: 4362682648724695287, guid: f26ffdb970e2657459fab45e5f05da33,
     type: 3}
-  killGold: 1
+  killGold: 2
   lootDrops:
   - {fileID: 2218980413163740039, guid: 0e2da42403e514f458cee4b162c04986, type: 3}
   - {fileID: 323577370319894686, guid: 54697d0d706b70c4ba141f778f3a6171, type: 3}
@@ -106,9 +106,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  enemyHealthScaling: 30
+  enemyHealthScaling: 20
   currHealth: 0
   dead: 0
+  deathSound: {fileID: 0}
+  damageSound: {fileID: 0}
 --- !u!95 &6714514132065724175
 Animator:
   serializedVersion: 3

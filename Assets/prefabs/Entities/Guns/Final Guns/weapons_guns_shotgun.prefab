@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: -7556184351973351725}
   m_Layer: 0
   m_Name: weapons_guns_shotgun
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,7 +140,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8961670684418856730}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.74, y: 0.658, z: -6.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -230,7 +230,7 @@ MonoBehaviour:
   shootType: 3
   ammoLeft: 0
   maxAmmo: 20
-  baseDamage: 10
+  baseDamage: 30
 --- !u!82 &-7556184351973351725
 AudioSource:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 01753fd8cbbfa5a4e88a4025e022a324, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

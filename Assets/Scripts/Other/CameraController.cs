@@ -83,11 +83,15 @@ public class CameraController : MonoBehaviour
     {
         if (scene == "Hub")
         {
+            if(gm.GetPlayerObject() != null)
+                PlayerPrefs.SetInt("MoneyEarned", gm.GetPlayerObject().GetComponent<MoneyController>().GetMoney());
             highscoreText.text = "Highest Wave: " + PlayerPrefs.GetInt("Highscore").ToString();
-            highscoreText.gameObject.SetActive(true);
+            highscoreText.enabled = true;
+            transform.Find("Canvas").Find("BossHealth").gameObject.SetActive(false);
         }
         else
-            highscoreText.gameObject.SetActive(false);
+            highscoreText.enabled = false;
+
         SetFade(0);
         do
         {            
@@ -102,8 +106,11 @@ public class CameraController : MonoBehaviour
     // FadeToScreen
     // Fades the camera back to the screen. Returns control to the player once the fade is complete
     // Return:  IEnumerator
-    public IEnumerator FadeToScreen()
+    public IEnumerator FadeToScreen(string scene, GameManager gm)
     {
+        if (scene == "Hub" || scene == "LevelSelection")
+            gm.GetPlayerObject().GetComponent<MoneyController>().SetMoney(PlayerPrefs.GetInt("MoneyEarned"));
+
         SetFade(1);
         do
         {

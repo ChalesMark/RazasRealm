@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         musicManager.Play(Music.hub);
         titleText.enabled = false;
         startGameButon.gameObject.SetActive(false);
+        PlayerPrefs.SetInt("MoneyEarned", 20);
         Camera.main.transform.Find("Canvas").Find("PlayerHealth").gameObject.SetActive(true);
         Camera.main.transform.Find("Canvas").Find("MoneyText").GetComponent<Text>().enabled = true;
         //AHHHH I CAN FEEL THE STRUCTURE FALLING APART :(
@@ -121,17 +122,13 @@ public class GameManager : MonoBehaviour
     public void LoadScene2(string scene, string spawnPointName)
     {
         SceneManager.LoadScene(scene);
-        if (scene == "Hub")
-            Camera.main.transform.Find("Canvas").Find("Highscore").GetComponent<Text>().enabled = true;
-        else
-            Camera.main.transform.Find("Canvas").Find("Highscore").GetComponent<Text>().enabled = false;
 
         if (SceneManager.GetActiveScene().name != scene)
         {
-
             StartCoroutine(WaitForSceneLoad(scene, spawnPointName));
         }
     }
+
 
     IEnumerator WaitForSceneLoad(string scene, string spawnPointName)
     {
@@ -142,11 +139,11 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == scene)
         {
-            FindPoint(spawnPointName);
+            FindPoint(scene, spawnPointName);
         }
     }
 
-    private void FindPoint(string spawnPointName)
+    private void FindPoint(string scene, string spawnPointName)
     {
         CameraController camera = Camera.main.GetComponent<CameraController>();
         GameObject lmGM = GameObject.Find("LevelManager");
@@ -161,7 +158,7 @@ public class GameManager : MonoBehaviour
         }
         camera.SetTarget(player);
         
-        StartCoroutine(camera.FadeToScreen());
+        StartCoroutine(camera.FadeToScreen(scene, this));
     }
 
     IEnumerator LoadAsyncScene(string scene)
@@ -190,6 +187,7 @@ public class GameManager : MonoBehaviour
         if(player == null) {
             return;
         }
+
         PlayerController pc = player?.GetComponent<PlayerController>();
         pc.DisableGun(true);
         pc.enabled = true;

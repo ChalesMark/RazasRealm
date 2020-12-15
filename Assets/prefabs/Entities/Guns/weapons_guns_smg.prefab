@@ -230,7 +230,7 @@ MonoBehaviour:
   shootType: 0
   ammoLeft: 0
   maxAmmo: 100
-  baseDamage: 20
+  baseDamage: 30
 --- !u!82 &1055194900785629597
 AudioSource:
   m_ObjectHideFlags: 0

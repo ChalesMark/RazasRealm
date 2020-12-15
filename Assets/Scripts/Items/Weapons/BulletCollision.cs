@@ -2,12 +2,14 @@
 using UnityEngine;
 using System;
 using TMPro;
- 
+using System.Collections.Generic;
+
 public class BulletCollision : MonoBehaviour
 {
     public static event EventHandler<BulletCollisionEventArgs> OnBulletCollision;
     public TextMeshPro damageNumbers;
     private DamageController damageController;
+    private List<string> ignoreCollision = new List<string>() { "Player", "Pit", "Bullet", "Pickup" };
 
     private void Start() {
         damageController = GetComponent<DamageController>();
@@ -23,7 +25,7 @@ public class BulletCollision : MonoBehaviour
             other.GetComponent<BaddieController>().Bleed();
             Destroy(gameObject);
         }
-        else if (other.tag != "Player")
+        else if (!ignoreCollision.Contains(other.tag))
             Destroy(gameObject);
         else
             print(other);

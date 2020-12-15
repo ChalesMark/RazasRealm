@@ -32,6 +32,11 @@ public class MoneyController : MonoBehaviour
         return amount;
     }
 
+    public void SetMoney(int amount)
+    {
+        this.amount = amount;
+    }
+
     public void SetKey(bool keyBool)
     {
         key = keyBool;

@@ -5,42 +5,16 @@ using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
-    public Slider healthBar;
     public GameObject dropItem;
-    private HealthController healthController;
-    private IEnemyController enemyController;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    public void DropLoot()
     {
-        healthController = GetComponent<HealthController>();
-        enemyController = GetComponent<IEnemyController>();
-        healthBar.gameObject.SetActive(true);
-
-        //TODO: move this to health controller
-        //healthBar.maxValue = healthController.maxHealth;
-        //healthBar.value = healthController.currHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if(enemyController.PlayerSpotted)
-        //{
-        //    healthBar.gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        //    healthBar.gameObject.SetActive(false);
-        //}
-
-        //TODO: move this to health controller
-        //healthBar.value = healthController.currHealth;
-    }
-
-    public void Die()
-    {
-        healthBar.gameObject.SetActive(false);
-        Instantiate(dropItem, transform.position, transform.rotation);
+        if (!GameObject.Find("WaveManager").GetComponent<WaveManager>().GetKeyDropped())
+        {
+            Instantiate(dropItem, transform.position, transform.rotation);
+            GameObject.Find("WaveManager").GetComponent<WaveManager>().SetKeyDropped();
+        }    
+        else
+            GetComponent<BaddieController>().DropAllLoot();
     }
 }

@@ -21643,6 +21643,12 @@ PrefabInstance:
       propertyPath: initialSpawnGroup
       value: 
       objectReference: {fileID: 45437225}
+    - target: {fileID: 4625897868269104273, guid: 699132ff77d59bd4da0349b271e5fd0c,
+        type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 369499918719199100, guid: 60da17e93b70ddc4b94d629ae5344eef,
+        type: 3}
     - target: {fileID: 4625897868269104274, guid: 699132ff77d59bd4da0349b271e5fd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23341,6 +23347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnPointName
       value: main
+      objectReference: {fileID: 0}
+    - target: {fileID: 615933728169144856, guid: 8a0c9226371cc39478fe09dbc052c909,
+        type: 3}
+      propertyPath: active
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6016120432858691316, guid: 8a0c9226371cc39478fe09dbc052c909,
         type: 3}
