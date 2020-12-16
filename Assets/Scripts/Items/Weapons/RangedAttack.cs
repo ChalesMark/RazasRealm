@@ -70,7 +70,7 @@ public class RangedAttack : MonoBehaviour, IAttackable
                 if (ammoLeft <= 0)
                 {
                     if (!loopingAudio)
-                        GameObject.Find("GameManager").GetComponent<AudioSource>().PlayOneShot(soundEffect.clip, 0.75f);
+                        GameObject.Find("GameManager").GetComponent<AudioSource>().PlayOneShot(soundEffect.clip, 0.30f);
                     controller.GetComponent<GearController>().ReturnToDefaultGun();
                 }
             }

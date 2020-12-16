@@ -32,6 +32,7 @@ public class BaddieController : MonoBehaviour, IEnemyController
 
     [Header("This toggle makes the enemy always ignore the player (mainly for testing purposes)")]
     public bool blind;
+    public bool titleScreen;
 
     int IEnemyController.KillGold { get { return killGold; } }
 
@@ -50,7 +51,11 @@ public class BaddieController : MonoBehaviour, IEnemyController
         }
 
         animator = GetComponent<Animator>();
-        animator.SetBool("walk",true);
+
+        if (titleScreen)
+            animator.SetBool("walk", false);
+        else
+            animator.SetBool("walk", true);
     }
 
     // Update is called once per frame

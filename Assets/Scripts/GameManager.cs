@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     public bool ignoreGameStart;
 
     [Header("Other Stuff")]
-    public Text titleText;
     public Button startGameButon;
     public Slider dresserRotate;
     public List<GameObject> hats;
@@ -31,7 +30,8 @@ public class GameManager : MonoBehaviour
     public GameObject lastGun;
     public GameObject lastHat;
 
-    MusicManager musicManager; 
+    MusicManager musicManager;
+    private Transform canvas;
 
     #region Getters and Setters
     // GetPlayer
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         Camera.main.cullingMask = 1 << 0;
         musicManager = GetComponent<MusicManager>();
+        canvas = Camera.main.transform.Find("Canvas");
 
         // Sets gameobjects to DontDestroyOnLoad so they continue to exist between level changes
         DontDestroyOnLoad(this.gameObject);
@@ -86,7 +87,10 @@ public class GameManager : MonoBehaviour
         print("START GAME!");
         LoadScene("Hub", "main");
         musicManager.Play(Music.hub);
-        titleText.enabled = false;
+        canvas.Find("TitleText").gameObject.SetActive(false);
+        canvas.Find("TeamNameText").gameObject.SetActive(false);
+        canvas.Find("OurNamesText").gameObject.SetActive(false);
+        canvas.Find("VersionText").gameObject.SetActive(false);
         startGameButon.gameObject.SetActive(false);
         PlayerPrefs.SetInt("MoneyEarned", 20);
         Camera.main.transform.Find("Canvas").Find("PlayerHealth").gameObject.SetActive(true);

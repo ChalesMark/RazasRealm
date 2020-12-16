@@ -10,7 +10,7 @@ public class ResetHighscoreButton : MonoBehaviour, IInteractable
 
     public string GetInteractText()
     {
-        return "Press F to Reset Highscore and Unlocks";
+        return "Press F to Reset Save File";
     }
 
     public void Interact(InteractController interactController)

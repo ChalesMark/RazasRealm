@@ -63,6 +63,6 @@ public class DoorController : MonoBehaviour, IInteractable
         if (keyRequirement)
             return "This door requires a key!";
         else
-            return "Spend $"+moneyCost+" to open this door";
+            return "Spend $"+moneyCost+".00 to open this door";
     }
 }
