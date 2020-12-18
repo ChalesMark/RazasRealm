@@ -51,11 +51,7 @@ public class BaddieController : MonoBehaviour, IEnemyController
         }
 
         animator = GetComponent<Animator>();
-
-        if (titleScreen)
-            animator.SetBool("walk", false);
-        else
-            animator.SetBool("walk", true);
+        animator.SetBool("walk", true);
     }
 
     // Update is called once per frame
