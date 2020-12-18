@@ -144,6 +144,7 @@ public class WaveManager : MonoBehaviour
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             Destroy(enemy);
         currentWave = 0;
+        GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObject().GetComponent<MoneyController>().SetMoney(20);
         totalEnemiesThisWave = baseEnemyCount;
         finishedSpawning = false;
         waveText.enabled = false;
@@ -192,11 +193,11 @@ public class WaveManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Transform canvas = Camera.main.transform.Find("Canvas");
-        if(canvas != null) {
+        if(Camera.main.transform.Find("Canvas"))
+        {
+            Transform canvas = Camera.main.transform.Find("Canvas");
             canvas.Find("WaveText").GetComponent<Text>().enabled = false;
             canvas.Find("EnemyCount").GetComponent<Text>().enabled = false;
         }
     }
-
 }

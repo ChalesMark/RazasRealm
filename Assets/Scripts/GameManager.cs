@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitForSceneLoad(string scene, string spawnPointName)
     {
-        while (SceneManager.GetActiveScene().name != scene)
+            while (SceneManager.GetActiveScene().name != scene)
         {
             yield return null;
         }

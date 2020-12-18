@@ -30,7 +30,8 @@ public class GearController : MonoBehaviour
 
     void Start() {
         hat = Instantiate(hat);
-        Weapon = Instantiate(StartingGun);
+        if(StartingGun)
+            Weapon = Instantiate(StartingGun);
     }
 
     void Update() {
@@ -49,17 +50,20 @@ public class GearController : MonoBehaviour
 
     public void ReturnToDefaultGun()
     {
-        Destroy(Weapon.gameObject);
+        if (Weapon != null)
+            Destroy(Weapon.gameObject);
         Weapon = Instantiate(StartingGun);
     }
 
     public void SwitchWeapon(WeaponScript newWeapon) {
-        Destroy(Weapon.gameObject);
+        if(Weapon != null)
+            Destroy(Weapon.gameObject);
         Weapon = newWeapon;
     }
 
     public void SwitchHat(GameObject newHat) {
-        Destroy(hat.gameObject);
+        if(hat != null)
+            Destroy(hat);
         hat = Instantiate(newHat);
     }
 

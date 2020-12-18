@@ -25,6 +25,7 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
+        dead = false;
         if (GameObject.Find("WaveManager"))
             waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -89,7 +90,8 @@ public class HealthController : MonoBehaviour
             GameObject.Find("GameManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
         if(tag == "Enemy")
         {
-            gameManager.GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);
+            if(gameManager.GetPlayerObject())
+                gameManager.GetPlayerObject().GetComponent<MoneyController>().AddMoney(GetComponent<IEnemyController>().KillGold);
             if (GetComponent<BossController>() != null)
             {
                 healthBar.gameObject.SetActive(false);

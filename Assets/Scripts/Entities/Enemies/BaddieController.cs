@@ -88,6 +88,8 @@ public class BaddieController : MonoBehaviour, IEnemyController
             if (lootRoll < lootDrops.Count)
                 Instantiate(lootDrops[lootRoll], transform.position, transform.rotation);
         }
+        if (titleScreen)
+            TitleScreenRespawn();
     }
 
     public void DropGuaranteedLoot()
@@ -119,7 +121,7 @@ public class BaddieController : MonoBehaviour, IEnemyController
         {
             other.gameObject.GetComponent<HealthController>().DecreaseCurrentHealth(Damage);
             damageNumbers.text = Damage.ToString();
-            Instantiate(damageNumbers, transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Quaternion.LookRotation(Camera.main.transform.position - transform.position));
+            Instantiate(damageNumbers, other.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Quaternion.LookRotation(Camera.main.transform.position - other.transform.position));
             AttackCooldown();
         }
     }
@@ -134,4 +136,17 @@ public class BaddieController : MonoBehaviour, IEnemyController
         attackOnCooldown = false;
     }
     
+    private void TitleScreenRespawn()
+    {
+        if(GameObject.Find("TitleSpawnGroup"))
+        {
+            List<Transform> spawns = new List<Transform>();
+            foreach (Transform spawn in GameObject.Find("TitleSpawnGroup").transform)
+                spawns.Add(spawn);
+
+            Transform spawnPoint = spawns[Random.Range(0, spawns.Count)];
+            Quaternion rotation = new Quaternion(spawnPoint.rotation.x, Random.Range(0f, 360f), spawnPoint.rotation.z, spawnPoint.rotation.w);
+            Instantiate(gameObject, spawnPoint.position, rotation);
+        }
+    }
 }
