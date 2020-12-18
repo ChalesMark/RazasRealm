@@ -18,22 +18,25 @@ public class HealthController : MonoBehaviour
     private AudioSource audio;
     private bool invincible = false;
     private GameManager gameManager;
-
+    private WaveManager waveManager;
 
     private Slider healthBar;
     private Text healthBarText;
 
     private void Start()
     {
+        if (GameObject.Find("WaveManager"))
+            waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if(GetComponent<AudioSource>() != null)
+        if (GetComponent<AudioSource>() != null)
             audio = GetComponent<AudioSource>();
 
         currHealth = maxHealth;
 
         if (gameObject.tag == "Enemy")
         {
-            maxHealth += enemyHealthScaling * GameObject.Find("WaveManager").GetComponent<WaveManager>().GetCurrentWave();
+            if(waveManager)
+                maxHealth += enemyHealthScaling * waveManager.GetCurrentWave();
             currHealth = maxHealth;
             if(GetComponent<BossController>() != null)
             {
